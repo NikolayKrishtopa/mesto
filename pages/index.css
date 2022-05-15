@@ -5,3 +5,71 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/page/page.css);
 @import url(../blocks/root/root.css);
+
+.navigaton {
+  margin: 0;
+  padding: 37px 0 48px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile {
+  margin: 0;
+  padding: 0;
+  display: flex;
+
+}
+.profile__avatar {
+  margin: 0 25px 0 0;;
+  padding: 0;
+  border-radius: 50%;
+  max-width: 130px;
+  box-sizing: border-box;
+}
+.profile__info {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.profile__container {
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: flex-end;
+}
+.profile__name {
+    margin: 0 18px 0 0;
+    padding: 0;
+    color: #fff;
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 1.143;
+}
+.profile__edit {
+  width: 24px;
+  height: 24px;
+  border: solid 1px #fff;
+  background: transparent;
+}
+.profile__edit-icon {
+}
+.profile__description {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.21;
+}
+.add-place {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px #fff;
+}
+.add-place__icon {
+}
