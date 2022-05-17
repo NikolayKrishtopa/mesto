@@ -1,8 +1,6 @@
 .place-card__annotation {
     margin: 0;
     padding: 0 30px 0 21px;
-    box-sizing: border-box;
-    max-width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
