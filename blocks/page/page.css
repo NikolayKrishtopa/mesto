@@ -1,6 +1,7 @@
 .page {
   margin: 0 auto;
-  padding: 0;
-  max-width: 880px;
+  padding: 0 100px;
+  box-sizing: border-box;
+  max-width: 1080px;
   font-family: 'Inter', 'Arial', sans-serif;
 }
