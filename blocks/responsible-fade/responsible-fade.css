@@ -1,0 +1,8 @@
+.responsible-fade {
+    cursor: url(../images/Kursor.png) 11 0, auto;
+    transition: opacity .5s ease;
+    }
+  
+  .responsible-fade:hover {
+    opacity: 60%;
+  }

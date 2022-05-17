@@ -1,0 +1,8 @@
+.navigaton {
+    margin: 0;
+    padding: 37px 0 48px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
