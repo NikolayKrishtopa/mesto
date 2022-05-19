@@ -4,6 +4,7 @@
   box-sizing: border-box;
   max-width: 1080px;
   font-family: 'Inter', 'Arial', sans-serif;
+  position: relative;
 }
 
 @media (max-width: 1080px){
