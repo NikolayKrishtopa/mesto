@@ -6,3 +6,9 @@
     font-weight: 900;
     line-height: 1.21;
     }
+
+    @media (max-width: 550px){
+        .popup__title {
+          font-size: 18px;
+        }
+    }

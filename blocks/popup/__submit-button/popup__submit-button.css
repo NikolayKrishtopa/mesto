@@ -10,3 +10,10 @@
     line-height: 1.21;
     border-radius: 2px;
   }
+
+  @media (max-width: 550px){
+    .popup__submit-button {
+      height: 46px;
+      font-size: 14px;
+    }
+    }

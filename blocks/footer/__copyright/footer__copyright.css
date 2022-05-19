@@ -6,3 +6,15 @@
     line-height: 1.22; 
     color: #545454;
   }
+
+  @media (max-width: 800px){
+    .footer__copyright {
+      padding: 36px 0px;
+    }
+  }
+
+  @media (max-width: 450px){
+    .footer__copyright {
+      padding-left: 19px;
+    }
+  }

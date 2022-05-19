@@ -1,10 +1,9 @@
 let editProfileButton = document.querySelector('.profile__edit-button')
-let popupCloseButton = document.querySelector('.popup__close-button')
-let popupSubmitButton = document.querySelector('.popup__submit-button')
-
 let popup = document.querySelector('.popup')
-let userNameField = document.querySelector('.popup__field_type_user-name')
-let userDescrField = document.querySelector('.popup__field_type_user-description')
+let popupCloseButton = popup.querySelector('.popup__close-button')
+let popupSubmitButton = popup.querySelector('.popup__submit-button')
+let userNameField = popup.querySelector('.popup__field_type_user-name')
+let userDescrField = popup.querySelector('.popup__field_type_user-description')
 
 editProfileButton.addEventListener('click', ()=>{
   popup.classList.add('popup_active')
