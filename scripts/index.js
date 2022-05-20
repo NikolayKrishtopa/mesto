@@ -17,9 +17,10 @@ popupCloseButton.addEventListener ('click', () => {
 }
 )
 
-popupSubmitButton.addEventListener('click', () => {
+popupSubmitButton.addEventListener('click', (event) => {
   document.querySelector('.profile__name').textContent = userNameField.value
   document.querySelector('.profile__description').textContent = userDescrField.value
   popup.classList.remove('popup_active')
+  event.preventDefault()
 }
 )
