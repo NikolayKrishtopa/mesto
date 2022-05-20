@@ -1,6 +1,6 @@
 .navigaton {
     margin: 0;
-    padding: 37px 0 48px 0;
+    padding: 36px 0 47px 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -10,5 +10,6 @@
   @media (max-width: 800px){
     .navigaton {
       flex-direction: column;
+      padding: 38px 0 36px 0;
     }
   }

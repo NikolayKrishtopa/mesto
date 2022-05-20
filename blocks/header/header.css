@@ -3,7 +3,7 @@
     padding: 3px 0 0 0;
     border-bottom: 1px solid rgba(84, 84, 84, .7);
     min-height: 120px;
-    box-sizing: content-box;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
 }
@@ -11,5 +11,6 @@
 @media(max-width: 450px) {
     .header {
       min-height: 84px;
+      padding: 0 0 3px 0;
     }
   }
