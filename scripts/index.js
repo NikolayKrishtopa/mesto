@@ -14,14 +14,13 @@ editProfileButton.addEventListener('click', ()=>{
 
 popupCloseButton.addEventListener ('click', () => {
   popup.classList.remove('popup_active')
-  event.preventDefault()
 }
 )
 
-popupSubmitButton.addEventListener('click', (event) => {
+popupSubmitButton.addEventListener('click', (evt) => {
   document.querySelector('.profile__name').textContent = userNameField.value
   document.querySelector('.profile__description').textContent = userDescrField.value
   popup.classList.remove('popup_active')
-  event.preventDefault()
+  evt.preventDefault()
 }
 )
