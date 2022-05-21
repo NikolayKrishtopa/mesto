@@ -4,6 +4,10 @@
     border-radius: 50%;
     max-width: 127px;
     box-sizing: border-box;
+    max-width: 240px;
+    max-height: 240px;
+    object-fit: cover;
+    object-position: center;
   }
 
   @media (max-width: 800px){

@@ -9,9 +9,10 @@
   border: solid 2px #fff;
   background: transparent;
   box-sizing: border-box;
+  border-radius: 2px;
   }
 
-  @media (max-width: 800px){
+  @media (max-width: 900px){
     .navigation__add-place-button {
       width: 282px;
       margin-top: 36px;

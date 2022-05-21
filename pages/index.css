@@ -25,6 +25,8 @@
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/responsible-fade/responsible-fade.css);
+@import url(../blocks/responsible-fade/_opacity/responsible-fade_opacity_50.css);
+@import url(../blocks/responsible-fade/_opacity/responsible-fade_opacity_80.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__close-icon/popup__close-icon.css);

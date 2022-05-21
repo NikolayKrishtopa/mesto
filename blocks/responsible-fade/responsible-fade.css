@@ -1,5 +1,5 @@
 .responsible-fade {
-    cursor: url(../../images/Kursor.png) 11 0, auto;
+    cursor: pointer;
     transition: opacity .5s ease;
     }
   

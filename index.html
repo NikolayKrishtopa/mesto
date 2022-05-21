@@ -10,7 +10,7 @@
 <body class="root">
   <div class="page">
     <header class="header">
-      <h1 class="header__title"><img src="./images/logo.png" alt="место." class="header__logo"></h1>
+      <img src="./images/logo.svg" alt="место." class="header__logo">
     </header>
     <main class="content">
       <section class="navigation">
@@ -18,86 +18,91 @@
           <img src="./images/kusteau.png" alt="Жак-Ив Кусто." class="profile__avatar">
           <div class="profile__info">
             <div class="profile__container">
-              <p class="profile__name">Жак-Ив Кусто</p>
-              <button class="profile__edit-button responsible-fade"><img src="./images/pensil-icon.png" alt="редактировать профиль." class="profile__edit-icon"></button>
+              <h2 class="profile__name">Жак-Ив Кусто</h2>
+              <button type="button" aria-label="Редактировать профиль" class="profile__edit-button responsible-fade">
+                <img src="./images/pensil-icon.svg" alt="редактировать профиль." class="profile__edit-icon">
+              </button>
             </div>
             <p class="profile__description">Исследователь океана</p>
           </div>
         </div>
-        <button class="navigation__add-place-button responsible-fade">
-          <img src="./images/plus-icon.png" alt="добавить ваше место." class="navigation__add-place-icon">
+        <button type="button" aria-label="Добавить ваше место" class="navigation__add-place-button responsible-fade">
+          <img src="./images/plus-icon.svg" alt="добавить ваше место." class="navigation__add-place-icon">
         </button>
       </section>
       <section class="place-cards">
-        <div class="place-card">
-          <img src="./images/Karachaevsk.png" alt="Старинная церковь на фоне гор." class="place-card__photo">
+        <article class="place-card">
+          <img src="./images/kamchatka.png" alt="Медведь у воды на фоне вулкана." class="place-card__photo">
           <div class="place-card__annotation">
-            <h2 class="place-card__title">Карачаевск</h2>
-            <button class="place-card__like-button responsible-fade">
-              <img src="./images/like-icon.png" alt="нравится!">
+            <h2 class="place-card__title">Камчатка</h2>
+            <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_50">
+              <img src="./images/like-icon.svg" alt="нравится!">
             </button>
           </div>
-        </div>
-        <div class="place-card">
+        </article>
+        <article class="place-card">
           <img src="./images/elbrus.png" alt="пейзаж, Эльбрус на горизонте." class="place-card__photo">
           <div class="place-card__annotation">
             <h2 class="place-card__title">Эльбрус</h2>
-            <button class="place-card__like-button responsible-fade">
-              <img src="./images/like-icon.png" alt="нравится!">
+            <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_50">
+              <img src="./images/like-icon.svg" alt="нравится!">
             </button>
           </div>
-        </div>
-        <div class="place-card">
+        </article>
+        <article class="place-card">
+          <img src="./images/onejskoe_ozero.png" alt="Закат над поверхностью воды и берег с деревьями" class="place-card__photo">
+          <div class="place-card__annotation">
+            <h2 class="place-card__title">Онежское озеро</h2>
+            <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_50">
+              <img src="./images/like-icon.svg" alt="нравится!">
+            </button>
+          </div>
+        </article>
+        <article class="place-card">
+          <img src="./images/altay.png" alt="горное озеро с прозрачной водой, вдали горы и деревья." class="place-card__photo">
+          <div class="place-card__annotation">
+            <h2 class="place-card__title">Алтай</h2>
+            <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_50">
+              <img src="./images/like-icon.svg" alt="нравится!">
+            </button>
+          </div>
+        </article>
+        <article class="place-card">
           <img src="./images/dombai.png" alt="Горный пейзаж:зеленые деревья на переднем 
           плане и заснеженные вершины на заднем" class="place-card__photo">
           <div class="place-card__annotation">
             <h2 class="place-card__title">Домбай</h2>
-            <button class="place-card__like-button responsible-fade">
-              <img src="./images/like-icon.png" alt="нравится!">
+            <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_50">
+              <img src="./images/like-icon.svg" alt="нравится!">
             </button>
           </div>
-        </div>
-        <div class="place-card">
-          <img src="./images/elbrus.png" alt="пейзаж, Эльбрус на горизонте." class="place-card__photo">
-          <div class="place-card__annotation">
-            <h2 class="place-card__title">Эльбрус</h2>
-            <button class="place-card__like-button responsible-fade">
-              <img src="./images/like-icon.png" alt="нравится!">
-            </button>
-          </div>
-        </div>
-        <div class="place-card">
-          <img src="./images/dombai.png" alt="Горный пейзаж:зеленые деревья на переднем 
-          плане и заснеженные вершины на заднем" class="place-card__photo">
-          <div class="place-card__annotation">
-            <h2 class="place-card__title">Домбай</h2>
-            <button class="place-card__like-button responsible-fade">
-              <img src="./images/like-icon.png" alt="нравится!">
-            </button>
-          </div>
-        </div>
-        <div class="place-card">
+        </article>
+        <article class="place-card">
           <img src="./images/Karachaevsk.png" alt="Старинная церковь на фоне гор." class="place-card__photo">
           <div class="place-card__annotation">
             <h2 class="place-card__title">Карачаево-Черкессия</h2>
-            <button class="place-card__like-button responsible-fade">
-              <img src="./images/like-icon.png" alt="нравится!">
+            <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_50">
+              <img src="./images/like-icon.svg" alt="нравится!">
             </button>
           </div>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
     <div class="popup">
-      <form class="popup__container">
+      <div class="popup__container">
         <h3 class="popup__title">Редактировать профиль</h3>
-        <input type="text" class="popup__field popup__field_type_user-name">
-        <input type="text" class="popup__field popup__field_type_user-description">
-        <button class="popup__submit-button responsible-fade">Сохранить</button>
-        <button type="button" class="popup__close-button  responsible-fade"><img src="./images/close-Icon.png" alt="Закрыть окно" class="popup__close-icon"></button>
-      </form>
+        <form action="" class="popup__edit-profile-form" name="edit-profile">
+          <input type="text" class="popup__field popup__field_type_user-name" name="user-name">
+          <input type="text" class="popup__field popup__field_type_user-description" name="user-description">
+          <button type="submit" class="popup__submit-button responsible-fade responsible-fade_opacity_80">Сохранить</button>
+        </form>
+        <button type="button" aria-label="Отменить редактирование" class="popup__close-button  responsible-fade">
+          <img src="./images/close-icon.svg" alt="Закрыть окно" class="popup__close-icon">
+        </button>
+      </в>
     </div>
   </div>
   <script src="./scripts/index.js"></script>
