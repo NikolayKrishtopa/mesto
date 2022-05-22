@@ -5,7 +5,7 @@
   font-size: 42px;
   font-weight: 500;
   line-height: 1.143;
-  max-width: 300px;
+  max-width: 295px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;  
@@ -15,6 +15,7 @@
     .profile__name {
       font-size: 27px;
       line-height: 1.21;
+      max-width: 190px;
     }
   }
   
