@@ -31,70 +31,29 @@
         </button>
       </section>
       <section class="place-cards">
-        <article class="place-card">
-          <img src="./images/kamchatka.png" alt="Медведь у воды на фоне вулкана." class="place-card__photo">
-          <div class="place-card__annotation">
-            <h2 class="place-card__title">Камчатка</h2>
-            <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_medium">
-              <img src="./images/like-icon.svg" alt="нравится!">
+        <template id="place-card-template">
+          <article class="place-card">
+            <button class="place-card__remove-button responsible-fade" type="button" aria-label="Удалить карточку.">
+              <img src="./images/trash-bin-icon.svg" alt="Удалить карточку." class="place-card__remove-button-icon">
             </button>
-          </div>
-        </article>
-        <article class="place-card">
-          <img src="./images/elbrus.png" alt="пейзаж, Эльбрус на горизонте." class="place-card__photo">
-          <div class="place-card__annotation">
-            <h2 class="place-card__title">Эльбрус</h2>
-            <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_medium">
-              <img src="./images/like-icon.svg" alt="нравится!">
-            </button>
-          </div>
-        </article>
-        <article class="place-card">
-          <img src="./images/onejskoe_ozero.png" alt="Закат над поверхностью воды и берег с деревьями" class="place-card__photo">
-          <div class="place-card__annotation">
-            <h2 class="place-card__title">Онежское озеро</h2>
-            <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_medium">
-              <img src="./images/like-icon.svg" alt="нравится!">
-            </button>
-          </div>
-        </article>
-        <article class="place-card">
-          <img src="./images/altay.png" alt="горное озеро с прозрачной водой, вдали горы и деревья." class="place-card__photo">
-          <div class="place-card__annotation">
-            <h2 class="place-card__title">Алтай</h2>
-            <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_medium">
-              <img src="./images/like-icon.svg" alt="нравится!">
-            </button>
-          </div>
-        </article>
-        <article class="place-card">
-          <img src="./images/dombai.png" alt="Горный пейзаж:зеленые деревья на переднем 
-          плане и заснеженные вершины на заднем" class="place-card__photo">
-          <div class="place-card__annotation">
-            <h2 class="place-card__title">Домбай</h2>
-            <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_medium">
-              <img src="./images/like-icon.svg" alt="нравится!">
-            </button>
-          </div>
-        </article>
-        <article class="place-card">
-          <img src="./images/Karachaevsk.png" alt="Старинная церковь на фоне гор." class="place-card__photo">
-          <div class="place-card__annotation">
-            <h2 class="place-card__title">Карачаево-Черкессия</h2>
-            <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_medium">
-              <img src="./images/like-icon.svg" alt="нравится!">
-            </button>
-          </div>
-        </article>
+            <img src="#" alt="#" class="place-card__photo responsible-fade">
+            <div class="place-card__annotation">
+              <h2 class="place-card__title">#</h2>
+              <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_medium">
+                <img src="./images/like-icon.svg" alt="нравится!" class="place-card__like-icon">
+              </button>
+            </div>
+          </article>
+        </template>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__edit-profile-form" name="edit-profile">
+        <form class="popup__form popup__form_type_edit-profile" name="edit-profile">
           <input type="text" class="popup__field popup__field_type_user-name" name="user-name">
           <input type="text" class="popup__field popup__field_type_user-description" name="user-description">
           <button type="submit" class="popup__submit-button responsible-fade responsible-fade_opacity_strong">Сохранить</button>
@@ -103,6 +62,26 @@
           <img src="./images/Close-icon.svg" alt="Закрыть окно" class="popup__close-icon">
         </button>
       </div>
+    </div>
+    <div class="popup popup_type_add-card">
+      <div class="popup__container">
+        <h3 class="popup__title">Новое место</h3>
+        <form class="popup__form" name="add-card">
+          <input type="text" class="popup__field popup__field_type_new-card-title" placeholder="Название" name="new-card-title">
+          <input type="text" class="popup__field popup__field_type_new-card-link" placeholder="Ссылка на картинку" name="new-card-link">
+          <button type="submit" class="popup__submit-button responsible-fade responsible-fade_opacity_strong">Создать</button>
+        </form>
+        <button type="button" aria-label="Отменить" class="popup__close-button  responsible-fade">
+          <img src="./images/Close-icon.svg" alt="Закрыть окно" class="popup__close-icon">
+        </button>
+      </div>
+    </div>
+    <div class="popup popup_type_picture-full-screen">
+      <img src="#" alt="#" class="popup__photo">
+      <h3 class="popup__title">#</h3>
+      <button type="button" aria-label="закрыть окно." class="popup__close-button  responsible-fade">
+        <img src="./images/Close-icon.svg" alt="Закрыть окно." class="popup__close-icon">
+      </button>
     </div>
   </div>
   <script src="./scripts/index.js"></script>

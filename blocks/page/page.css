@@ -16,6 +16,6 @@
 
 @media (max-width: 450px){
   .page {
-    padding: 0;
+    padding: 0 19px;
   }
 }
