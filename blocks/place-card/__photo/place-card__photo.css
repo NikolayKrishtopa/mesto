@@ -1,7 +1,7 @@
 .place-card__photo {
   border-radius: 10px 10px 0 0;
   max-width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 1 / 1;
   object-position: center;
   object-fit: cover;
   color: #fff;
