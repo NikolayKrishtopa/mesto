@@ -36,7 +36,7 @@
             <button class="place-card__remove-button responsible-fade" type="button" aria-label="Удалить карточку.">
               <img src="./images/trash-bin-icon.svg" alt="Удалить карточку." class="place-card__remove-button-icon">
             </button>
-            <img src="#" alt="#" class="place-card__photo responsible-fade">
+            <img src="#" alt="#" class="place-card__photo">
             <div class="place-card__annotation">
               <h2 class="place-card__title">#</h2>
               <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_medium">
@@ -77,11 +77,13 @@
       </div>
     </div>
     <div class="popup popup_type_picture-full-screen">
-      <img src="#" alt="#" class="popup__photo">
-      <h3 class="popup__title">#</h3>
-      <button type="button" aria-label="закрыть окно." class="popup__close-button  responsible-fade">
-        <img src="./images/Close-icon.svg" alt="Закрыть окно." class="popup__close-icon">
-      </button>
+      <div class="popup__photo-container">
+        <button type="button" aria-label="закрыть окно." class="popup__close-button  responsible-fade">
+          <img src="./images/Close-icon.svg" alt="Закрыть окно." class="popup__close-icon">
+        </button>
+        <img src="#" alt="#" class="popup__photo">
+        <h3 class="popup__title popup__title_type_photo">#</h3>
+      </div>
     </div>
   </div>
   <script src="./scripts/index.js"></script>

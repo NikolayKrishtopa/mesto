@@ -1,33 +1,33 @@
 const initialCards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-    alt: 'Зеленые горы на фоне неба.'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-    alt: 'Зимний пейзаж: озеро с заснеженными берегами, на заднем фоне деревья.'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-    alt: 'Серые однотипные панельные дома до горизонта.'
+    name: 'Онежское озеро',
+    link: 'https://images.unsplash.com/photo-1543699936-c901ddbf0c05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80',
+    alt: 'Каменистый берег озера с высокими деревьями.'
   },
   {
     name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-    alt: 'Пустынный пейзаж тундры, вулкан вдалеке.'
+    link: 'https://images.unsplash.com/photo-1634745186518-db2e653372c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+    alt: 'Вулкан в дымке на горизонте.'
   },
   {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-    alt: 'Лиственные деревья, рельсы, уходящие вдаль на фоне неба.'
+    name: 'Ольхон',
+    link: 'https://images.unsplash.com/photo-1548130516-2ca6aaeb84b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+    alt: 'Озеро с голубой водой на фоне голубого ясного неба и каменистый берег.'
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-    alt: 'Заснеженный берег байкала, отвесная крутая скала.'
+    name: 'Казань',
+    link: 'https://images.unsplash.com/photo-1631775866694-fe340840cc52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+    alt: 'Ночной вид на Казанский кремль с отражением в воде.'
+  },
+  {
+    name: 'Ростов-на-Дону',
+    link: 'https://images.unsplash.com/photo-1625251447297-e98686b6c251?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+    alt: 'Ночь, заснеженная узкая пустынная улица с старинными фонарями.'
+  },
+  {
+    name: 'Светлогорск',
+    link: 'https://images.unsplash.com/photo-1621707098150-3c0b7de2c3ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+    alt: 'Разноцветные двухэтажные дома, стоящие друг к другу вплотную.'
   }
 ]; 
 
@@ -46,7 +46,9 @@ function addNewCard(card, addToEnd=true) {
 }
 
 // функция открытия-закрытия любого всплывающего окна
-function showHideContent (obj, cls) {obj.classList.toggle(cls)}
+function showHideContent (obj, cls) {
+  obj.classList.toggle(cls)
+}
 
 // Добавление исходных карточек на страницу
 initialCards.forEach(card => addNewCard(card))
@@ -62,6 +64,11 @@ let addCardPopup = document.querySelector('.popup_type_add-card')
 let popupCloseButton = document.querySelectorAll('.popup__close-button')
 let editUserNameField = document.querySelector('.popup__field_type_user-name')
 let editUserDescrField = document.querySelector('.popup__field_type_user-description')
+let addPlaceNameField = addCardPopup.querySelector('.popup__field_type_new-card-title')
+let addPlaceLinkField = addCardPopup.querySelector('.popup__field_type_new-card-link')
+let fullScreenPhotoPopup = document.querySelector('.popup_type_picture-full-screen')
+let fullScreenPhoto = fullScreenPhotoPopup.querySelector('.popup__photo')
+let fullScreenPhotoTitle = fullScreenPhotoPopup.querySelector('.popup__title_type_photo')
 
 // Логика работы кнопки редактирования профиля
 
@@ -87,25 +94,38 @@ popupCloseButton.forEach(e=>e.addEventListener('click', (evt)=>showHideContent(e
 // ***ДОБАВЛЕНИЕ НОВЫХ КАРТОЧЕК***
 
 addCardButton.addEventListener('click', (evt) => {
+  addPlaceNameField.value = ''
+  addPlaceLinkField.value = ''
   showHideContent(addCardPopup, 'popup_active')
 }
 )
 
 addCardPopup.addEventListener('submit', (evt)=>{
-  let newCardName = addCardPopup.querySelector('.popup__field_type_new-card-title').value
-  let newCardLink = addCardPopup.querySelector('.popup__field_type_new-card-link').value
+  let newCardName = addPlaceNameField.value
+  let newCardLink = addPlaceLinkField.value
   addNewCard({name: newCardName, link: newCardLink, alt: 'Описание не указано.'}, false)
   showHideContent(addCardPopup, 'popup_active')
   evt.preventDefault()
 })
 
 // Реализация работы кнопкок на карточках
+
 cardsSection.addEventListener('click', (evt) => {
-  let tgt = evt.target.closest('button')
-  console.log(tgt)
-  tgt.classList.contains('place-card__like-button') ? evt.target.classList.toggle('place-card__like-button_active') 
-  : 
-  tgt.classList.contains('place-card__remove-button') ? tgt.closest('.place-card').remove()
-  :
-  null
-})
+  let tgt = evt.target
+  console.log(tgt.classList.contains('place-card__photo'))
+  if (!tgt.classList){return}
+  else if (tgt.classList.contains('place-card__photo')){
+      showHideContent(fullScreenPhotoPopup, 'popup_active')
+      fullScreenPhoto.src = tgt.src
+      fullScreenPhoto.alt = tgt.alt
+      fullScreenPhotoTitle.textContent = tgt.closest('.place-card').querySelector('.place-card__title').textContent
+  }
+  else if (!tgt.closest('button')){return}
+  else if (tgt.closest('button').classList.contains('place-card__like-button')){
+    tgt.classList.toggle('place-card__like-button_active')
+  } 
+  else if (tgt.closest('button').classList.contains('place-card__remove-button')){
+  tgt.closest('.place-card').remove()
+  } 
+  }
+  )
