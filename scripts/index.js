@@ -31,62 +31,81 @@ const initialCards = [
   }
 ]; 
 
-let cardTemplate = document.querySelector('#place-card-template').content
-let cardsSection = document.querySelector('.place-cards')
+const cardTemplate = document.querySelector('#place-card-template').content
+const cardsSection = document.querySelector('.place-cards')
+const editProfileButton = document.querySelector('.profile__edit-button')
+const addCardButton = document.querySelector('.navigation__add-place-button')
+const editProfilePopup = document.querySelector('.popup_type_edit-profile')
+const addCardPopup = document.querySelector('.popup_type_add-card')
+const popupCloseButtons = document.querySelectorAll('.popup__close-button')
+const editUserNameField = document.querySelector('.popup__field_type_user-name')
+const editUserDescrField = document.querySelector('.popup__field_type_user-description')
+const addPlaceNameField = addCardPopup.querySelector('.popup__field_type_new-card-title')
+const addPlaceLinkField = addCardPopup.querySelector('.popup__field_type_new-card-link')
+const fullScreenPhotoPopup = document.querySelector('.popup_type_picture-full-screen')
+const fullScreenPhoto = fullScreenPhotoPopup.querySelector('.popup__photo')
+const fullScreenPhotoTitle = fullScreenPhotoPopup.querySelector('.popup__title_type_photo')
+const profileName = document.querySelector('.profile__name')
+const profileDescr = document.querySelector('.profile__description')
 
 
-// функция добавления новой карточки
-function addNewCard(card, addToEnd=true) {
-  let cardTemplateClone = cardTemplate.cloneNode(true)
-  cardTemplateClone.querySelector('.place-card__photo').src = card.link
-  cardTemplateClone.querySelector('.place-card__photo').alt = card.alt ? card.alt : 'Описание не указано.'
-  cardTemplateClone.querySelector('.place-card__title').textContent = card.name
-  if (addToEnd) {cardsSection.append(cardTemplateClone)}
-  else {cardsSection.prepend(cardTemplateClone)}
+// функция создания новой карточки
+function createCard(card) {
+  const cardElement = cardTemplate.cloneNode(true).querySelector('.place-card')
+  cardElement.querySelector('.place-card__photo').src = card.link
+  cardElement.querySelector('.place-card__photo').alt = card.alt ? card.alt : 'Описание не указано.'
+  cardElement.querySelector('.place-card__title').textContent = card.name
+  cardElement.addEventListener('click', (evt) => {
+    const tgt = evt.target
+    if (tgt.classList.contains('place-card__photo')){
+        openPopup(fullScreenPhotoPopup)
+        fullScreenPhoto.src = tgt.src
+        fullScreenPhoto.alt = tgt.alt
+        fullScreenPhotoTitle.textContent = tgt.closest('.place-card').querySelector('.place-card__title').textContent
+    } 
+    else if (!tgt.closest('button')){return}
+    else if (tgt.closest('button').classList.contains('place-card__like-button')){
+      tgt.classList.toggle('place-card__like-button_active')
+    } 
+    else if (tgt.closest('button').classList.contains('place-card__remove-button')){
+    tgt.closest('.place-card').remove()
+    } 
+    }
+    )
+  return cardElement
 }
 
-// функция открытия-закрытия любого всплывающего окна
-function showHideContent (obj, cls) {
-  obj.classList.toggle(cls)
+// функции открытия и закрытия всплывающего окна
+function openPopup (popup) {
+  popup.classList.add('popup_active')
+}
+function closePopup (popup) {
+  popup.classList.remove('popup_active')
 }
 
 // Добавление исходных карточек на страницу
-initialCards.forEach(card => addNewCard(card))
-
+initialCards.forEach(card => cardsSection.append(createCard(card)))
 
 
 // ***РЕАЛИЗАЦИЯ РЕДАКТИРОВАНИЯ ПРОФИЛЯ***
 
-let editProfileButton = document.querySelector('.profile__edit-button')
-let addCardButton = document.querySelector('.navigation__add-place-button')
-let editProfilePopup = document.querySelector('.popup_type_edit-profile')
-let addCardPopup = document.querySelector('.popup_type_add-card')
-let popupCloseButton = document.querySelectorAll('.popup__close-button')
-let editUserNameField = document.querySelector('.popup__field_type_user-name')
-let editUserDescrField = document.querySelector('.popup__field_type_user-description')
-let addPlaceNameField = addCardPopup.querySelector('.popup__field_type_new-card-title')
-let addPlaceLinkField = addCardPopup.querySelector('.popup__field_type_new-card-link')
-let fullScreenPhotoPopup = document.querySelector('.popup_type_picture-full-screen')
-let fullScreenPhoto = fullScreenPhotoPopup.querySelector('.popup__photo')
-let fullScreenPhotoTitle = fullScreenPhotoPopup.querySelector('.popup__title_type_photo')
-
 // Логика работы кнопки редактирования профиля
 
 editProfileButton.addEventListener('click', ()=>{
-  showHideContent(editProfilePopup, 'popup_active')
-  editUserNameField.value = document.querySelector('.profile__name').textContent
-  editUserDescrField.value = document.querySelector('.profile__description').textContent
+  openPopup(editProfilePopup)
+  editUserNameField.value = profileName.textContent
+  editUserDescrField.value = profileDescr.textContent
 }
 )
 
-// Закрытие любого всплывающего окна по кнопке
-popupCloseButton.forEach(e=>e.addEventListener('click', (evt)=>showHideContent(evt.target.closest('.popup'),'popup_active')))
+// Закрытие любого всплывающего окна по кнопке (альтернативный вариант изучен и принят к сведению)
+popupCloseButtons.forEach(e=>e.addEventListener('click', (evt)=>closePopup(evt.target.closest('.popup'))))
 
 // Сохранение новых данных пользователя при нажатии кнопки Сохранить
   editProfilePopup.querySelector('.popup__form_type_edit-profile').addEventListener('submit', (evt) => {
-  document.querySelector('.profile__name').textContent = editUserNameField.value
-  document.querySelector('.profile__description').textContent = editUserDescrField.value
-  showHideContent(editProfilePopup, 'popup_active')
+  profileName.textContent = editUserNameField.value
+  profileDescr.textContent = editUserDescrField.value
+  closePopup(editProfilePopup)
   evt.preventDefault()
 }
 )
@@ -94,38 +113,16 @@ popupCloseButton.forEach(e=>e.addEventListener('click', (evt)=>showHideContent(e
 // ***ДОБАВЛЕНИЕ НОВЫХ КАРТОЧЕК***
 
 addCardButton.addEventListener('click', (evt) => {
-  addPlaceNameField.value = ''
-  addPlaceLinkField.value = ''
-  showHideContent(addCardPopup, 'popup_active')
+  addPlaceNameField.closest('.popup__form').reset()
+  openPopup(addCardPopup)
 }
 )
 
 addCardPopup.addEventListener('submit', (evt)=>{
-  let newCardName = addPlaceNameField.value
-  let newCardLink = addPlaceLinkField.value
-  addNewCard({name: newCardName, link: newCardLink, alt: 'Описание не указано.'}, false)
-  showHideContent(addCardPopup, 'popup_active')
+  const newCardName = addPlaceNameField.value
+  const newCardLink = addPlaceLinkField.value
+  cardsSection.prepend(createCard({name: newCardName, link: newCardLink, alt: 'Описание не указано.'}))
+  closePopup(addCardPopup)
   evt.preventDefault()
-})
-
-// Реализация работы кнопкок на карточках
-
-cardsSection.addEventListener('click', (evt) => {
-  let tgt = evt.target
-  console.log(tgt.classList.contains('place-card__photo'))
-  if (!tgt.classList){return}
-  else if (tgt.classList.contains('place-card__photo')){
-      showHideContent(fullScreenPhotoPopup, 'popup_active')
-      fullScreenPhoto.src = tgt.src
-      fullScreenPhoto.alt = tgt.alt
-      fullScreenPhotoTitle.textContent = tgt.closest('.place-card').querySelector('.place-card__title').textContent
-  }
-  else if (!tgt.closest('button')){return}
-  else if (tgt.closest('button').classList.contains('place-card__like-button')){
-    tgt.classList.toggle('place-card__like-button_active')
-  } 
-  else if (tgt.closest('button').classList.contains('place-card__remove-button')){
-  tgt.closest('.place-card').remove()
-  } 
-  }
-  )
+}
+)
