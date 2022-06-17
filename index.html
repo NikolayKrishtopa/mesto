@@ -55,7 +55,9 @@
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form popup__form_type_edit-profile" name="edit-profile">
           <input type="text" class="popup__field popup__field_type_user-name" name="user-name">
+          <span class="user-name-error popup__input-error  popup__input-error_type_user-name">Это поле обязательно</span>
           <input type="text" class="popup__field popup__field_type_user-description" name="user-description">
+          <span class="user-description-error popup__input-error popup__input-error_type_user-descr">Это поле обязательно</span>
           <button type="submit" class="popup__submit-button responsible-fade responsible-fade_opacity_strong">Сохранить</button>
         </form>
         <button type="button" aria-label="Отменить редактирование" class="popup__close-button  responsible-fade">
@@ -67,11 +69,13 @@
       <div class="popup__container">
         <h3 class="popup__title">Новое место</h3>
         <form class="popup__form" name="add-card">
-          <input type="text" class="popup__field popup__field_type_new-card-title" placeholder="Название" name="new-card-title">
-          <input type="text" class="popup__field popup__field_type_new-card-link" placeholder="Ссылка на картинку" name="new-card-link">
-          <button type="submit" class="popup__submit-button responsible-fade responsible-fade_opacity_strong">Создать</button>
+          <input type="text" minlength="2" maxlength="30" required novalidate class="popup__field popup__field_state_error popup__field_type_new-card-title" placeholder="Название" name="new-card-title">
+          <span class="new-card-title-error popup__input-error popup__input-error_type_card-title">Это поле обязательно</span>
+          <input type="text" type="url" required novalidate class="popup__field popup__field_state_error popup__field_type_new-card-link" placeholder="Ссылка на картинку" name="new-card-link">
+          <span class="new-card-link-error popup__input-error popup__input-error_type_card-link">Это поле обязательно</span>
+          <button type="submit" class="popup__submit-button popup__submit-button_inactive responsible-fade responsible-fade_opacity_strong">Создать</button>
         </form>
-        <button type="button" aria-label="Отменить" class="popup__close-button  responsible-fade">
+        <button type="button" aria-label="Отменить" class="popup__close-button responsible-fade">
           <img src="./images/Close-icon.svg" alt="Закрыть окно" class="popup__close-icon">
         </button>
       </div>
@@ -87,6 +91,7 @@
     </div>
   </div>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>
 
