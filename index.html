@@ -38,8 +38,9 @@
             </button>
             <img src="#" alt="#" class="place-card__photo">
             <div class="place-card__annotation">
-              <h2 class="place-card__title">#</h2>
-              <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade responsible-fade_opacity_medium">
+              <h2 class="place-card__title"></h2>
+              <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade 
+              responsible-fade_opacity_medium">
                 <img src="./images/like-icon.svg" alt="нравится!" class="place-card__like-icon">
               </button>
             </div>
@@ -53,12 +54,17 @@
     <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form popup__form_type_edit-profile" name="edit-profile">
-          <input type="text" class="popup__field popup__field_type_user-name" name="user-name">
-          <span class="user-name-error popup__input-error  popup__input-error_type_user-name">Это поле обязательно</span>
-          <input type="text" class="popup__field popup__field_type_user-description" name="user-description">
-          <span class="user-description-error popup__input-error popup__input-error_type_user-descr">Это поле обязательно</span>
-          <button type="submit" class="popup__submit-button responsible-fade responsible-fade_opacity_strong">Сохранить</button>
+        <form class="popup__form popup__form_type_edit-profile" novalidate name="edit-profile">
+          <input type="text" class="popup__field popup__field_type_user-name" name="user-name" 
+          required minlength="2" maxlength="40">
+          <p class="user-name-error popup__input-error popup__input-error_type_user-name"></p>
+          <input type="text" class="popup__field popup__field_type_user-description" name="user-description"
+          required minlength="2" maxlength="200">
+          <p class="user-description-error popup__input-error popup__input-error_type_user-descr"></p>
+          <button type="submit" id="popup__submit-button" class="popup__submit-button 
+          responsible-fade responsible-fade_opacity_strong">
+          Сохранить
+          </button>
         </form>
         <button type="button" aria-label="Отменить редактирование" class="popup__close-button  responsible-fade">
           <img src="./images/Close-icon.svg" alt="Закрыть окно" class="popup__close-icon">
@@ -68,12 +74,17 @@
     <div class="popup popup_type_add-card">
       <div class="popup__container">
         <h3 class="popup__title">Новое место</h3>
-        <form class="popup__form" name="add-card">
-          <input type="text" minlength="2" maxlength="30" required novalidate class="popup__field popup__field_state_error popup__field_type_new-card-title" placeholder="Название" name="new-card-title">
-          <span class="new-card-title-error popup__input-error popup__input-error_type_card-title">Это поле обязательно</span>
-          <input type="text" type="url" required novalidate class="popup__field popup__field_state_error popup__field_type_new-card-link" placeholder="Ссылка на картинку" name="new-card-link">
-          <span class="new-card-link-error popup__input-error popup__input-error_type_card-link">Это поле обязательно</span>
-          <button type="submit" class="popup__submit-button popup__submit-button_inactive responsible-fade responsible-fade_opacity_strong">Создать</button>
+        <form class="popup__form" name="add-card" novalidate>
+          <input type="text" minlength="2" maxlength="30" required name="new-card-title"
+          class="popup__field popup__field_type_new-card-title" placeholder="Название" >
+          <p class="new-card-title-error popup__input-error popup__input-error_type_card-title"></p>
+          <input type="url" required class="popup__field popup__field_type_new-card-link" 
+          placeholder="Ссылка на картинку" name="new-card-link">
+          <p class="new-card-link-error popup__input-error popup__input-error_type_card-link"></p>
+          <button type="submit" id="popup__submit-button" class="popup__submit-button 
+          responsible-fade responsible-fade_opacity_strong">
+          Создать
+          </button>
         </form>
         <button type="button" aria-label="Отменить" class="popup__close-button responsible-fade">
           <img src="./images/Close-icon.svg" alt="Закрыть окно" class="popup__close-icon">
@@ -86,12 +97,13 @@
           <img src="./images/Close-icon.svg" alt="Закрыть окно." class="popup__close-icon">
         </button>
         <img src="#" alt="#" class="popup__photo">
-        <h3 class="popup__title popup__title_type_photo">#</h3>
+        <h3 class="popup__title popup__title_type_photo"></h3>
       </div>
     </div>
   </div>
-  <script src="./scripts/index.js"></script>
+  <script src="./scripts/initialCards.js"></script>
   <script src="./scripts/validate.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
 

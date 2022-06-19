@@ -1,6 +1,6 @@
 .popup__field {
     margin: 0;
-    padding: 10px 0;
+    padding: 0 0 10px 0;
     width: 100%;
     color: #000;
     font-size: 14px;
@@ -20,15 +20,11 @@
 }
 
 .popup__field:first-of-type{
-  margin: 39px 0 17px 0;
+  margin: 49px 0 0 0;
 }
   
 @media (max-width: 550px){
   .popup__field:first-of-type{
-    margin-top: 65px;
+    margin-top: 76px;
   }
 }
-
-.popup__field:last-of-type{
-  margin-bottom: 47px;
-}  

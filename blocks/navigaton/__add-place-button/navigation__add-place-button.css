@@ -12,6 +12,10 @@
   border-radius: 2px;
   }
 
+  .navigation__add-place-button:checked {
+    border-color: red;
+  }
+
   @media (max-width: 900px){
     .navigation__add-place-button {
       width: 282px;

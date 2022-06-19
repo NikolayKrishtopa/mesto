@@ -32,40 +32,14 @@
 @import url(../blocks/popup/__close-icon/popup__close-icon.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__field/popup__field.css);
+@import url(../blocks/popup/__field/_state/popup__field_state_error.css);
+@import url(../blocks/popup/__input-error/popup__input-error.css);
+@import url(../blocks/popup/__input-error/_active/popup__input-error_active.css);
 @import url(../blocks/popup/__photo/popup__photo.css);
 @import url(../blocks/popup/__photo-container/popup__photo-container.css);
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
+@import url(../blocks/popup/__submit-button/_inactive/popup__submit-button_inactive.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__title/_type/popup__title_type_photo.css);
 @import url(../blocks/popup/_active/popup_active.css);
 @import url(../blocks/popup/_type/popup_type_picture-full-screen.css);
-
-.popup__input-error {
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  color:#FF0000;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.25;
-}
-
-.popup__input-error_type_card-title, .popup__input-error_type_user-name {
-  top: 143px;
-}
-
-.popup__input-error_type_card-link, .popup__input-error_type_user-descr {
-  bottom: 118px;
-}
-
-.popup__field_state_error {
-  border-bottom: #FF0000 1px solid;
-}
-
-.popup__submit-button_inactive {
-  opacity: 0.2;
-  color: #000;
-  background:transparent;
-  border: 1px solid #000;
-  
-}
