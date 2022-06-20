@@ -45,30 +45,21 @@ function createCard(card) {
 
 // функции открытия и закрытия всплывающего окна
 
-function closePopup (popup) {
-  //обнуление полей ошибок на случай закрытия формы без сохранения с активным полем ошибки 
-  //чтоб не было ошибки при повторном открытии
-  const popupInputsList = popup.querySelectorAll('.popup__field')
-  popupInputsList.forEach(input => hideInputError(popup, input, 
-    {inputErrorClass: 'popup__field_state_error', errorClass: 'popup__input-error_active'}))
-  //Основной функционал по открытию окна
-  popup.classList.remove('popup_active')
-  document.removeEventListener('keydown', evt => {
-    if (evt.key === "Escape") {
-      closePopup(popup)
-    }
-  }
-  ) 
+ function closeByEsc(evt){
+if (evt.key === 'Escape') {
+  const openedPopup = document.querySelector('.popup_active')
+  closePopup(openedPopup)
+}
+ }
+
+ function openPopup (popup) {
+  popup.classList.add('popup_active')
+  document.addEventListener('keydown', closeByEsc)
 }
 
-function openPopup (popup) {
-  popup.classList.add('popup_active')
-  document.addEventListener('keydown', evt => {
-    if (evt.key === "Escape") {
-      closePopup(popup)
-    }
-  }
-  )
+function closePopup (popup) {
+  popup.classList.remove('popup_active')
+  document.removeEventListener('keydown', closeByEsc) 
 }
 
 // Добавление исходных карточек на страницу
@@ -80,23 +71,26 @@ initialCards.forEach(card => cardsSection.append(createCard(card)))
 // Логика работы кнопки редактирования профиля
 
 editProfileButton.addEventListener('click', ()=>{
+   //обнуление полей ошибок на случай закрытия формы без сохранения с активным полем ошибки 
+  //чтоб не было ошибки при повторном открытии
+  const popupInputsList = editProfilePopup.querySelectorAll('.popup__field')
+  popupInputsList.forEach(input => hideInputError(editProfilePopup, input, 
+    {inputErrorClass: 'popup__field_state_error', errorClass: 'popup__input-error_active'}))
+  //основной функционал открытия окна редактирование профиля
   openPopup(editProfilePopup)
   editUserNameField.value = profileName.textContent
   editUserDescrField.value = profileDescr.textContent
 }
 )
 
-// Закрытие любого всплывающего окна по кнопке
-popupCloseButtons.forEach(e=>e.addEventListener('click', (evt)=>closePopup(evt.target.closest('.popup'))))
-
-// Закрытие любого всплывающего окна по клику на overlay
-allPopups.forEach(e => {
-  e.addEventListener ('mousedown', evt => {
-    if (evt.target === e) {closePopup(e)}
-  }
-  )
-}
-)
+allPopups.forEach(popup => {
+  popup.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('popup_active') || evt.target.classList.contains('popup__close-button')) 
+      {
+        closePopup(popup)
+      }
+  })
+}) 
 
 // Сохранение новых данных пользователя при нажатии кнопки Сохранить
   editProfilePopup.querySelector('.popup__form_type_edit-profile').addEventListener('submit', (evt) => {
@@ -110,6 +104,12 @@ allPopups.forEach(e => {
 // ***ДОБАВЛЕНИЕ НОВЫХ КАРТОЧЕК***
 
 addCardButton.addEventListener('click', (evt) => {
+  //обнуление полей ошибок на случай закрытия формы без сохранения с активным полем ошибки 
+  //чтоб не было ошибки при повторном открытии
+  const popupInputsList = addCardPopup.querySelectorAll('.popup__field')
+  popupInputsList.forEach(input => hideInputError(addCardPopup, input, 
+    {inputErrorClass: 'popup__field_state_error', errorClass: 'popup__input-error_active'}))
+  //основной функционал открытия окна редактирование профиля
   addPlaceNameField.closest('.popup__form').reset()
   openPopup(addCardPopup)
 }
