@@ -23,13 +23,13 @@ function showInputError(formElement, inputElement, errorMessage, pageSelectors) 
     errorElement.classList.add(pageSelectors.errorClass)
   }
 
-  function hideInputError(formElement, inputElement, pageSelectors) {
+export function hideInputError(formElement, inputElement, pageSelectors) {
     const errorElement = formElement.querySelector(`.${inputElement.name}-error`)
     inputElement.classList.remove(pageSelectors.inputErrorClass)
     errorElement.textContent = ''
     errorElement.classList.remove(pageSelectors.errorClass)
   }
-  
+
   function checkInputValidity(formElement, inputElement, pageSelectors){
     if (!inputElement.validity.valid) {showInputError(formElement, inputElement, inputElement.validationMessage, pageSelectors)}
     else {hideInputError(formElement, inputElement, pageSelectors)}
@@ -37,7 +37,7 @@ function showInputError(formElement, inputElement, errorMessage, pageSelectors) 
 
   function setEventListeners(formElement, buttonElement, pageSelectors){
     const inputList = Array.from(formElement.querySelectorAll(pageSelectors.inputSelector))
-    inputList.forEach(inputElement => 
+    inputList.forEach(inputElement =>
       inputElement.addEventListener('input', () => {
         checkInputValidity(formElement, inputElement, pageSelectors)
         toggleButtonState(inputList, buttonElement, pageSelectors)
@@ -68,4 +68,4 @@ enableValidation({
   inputErrorClass: 'popup__field_state_error',
   errorClass: 'popup__input-error_active'
 })
-  
+

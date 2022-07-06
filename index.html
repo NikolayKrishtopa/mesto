@@ -39,7 +39,7 @@
             <img src="#" alt="#" class="place-card__photo">
             <div class="place-card__annotation">
               <h2 class="place-card__title"></h2>
-              <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade 
+              <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade
               responsible-fade_opacity_medium">
                 <img src="./images/like-icon.svg" alt="нравится!" class="place-card__like-icon">
               </button>
@@ -55,13 +55,13 @@
       <div class="popup__container">
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form popup__form_type_edit-profile" novalidate name="edit-profile">
-          <input type="text" class="popup__field popup__field_type_user-name" name="user-name" 
+          <input type="text" class="popup__field popup__field_type_user-name" name="user-name"
           required minlength="2" maxlength="40">
           <p class="user-name-error popup__input-error popup__input-error_type_user-name"></p>
           <input type="text" class="popup__field popup__field_type_user-description" name="user-description"
           required minlength="2" maxlength="200">
           <p class="user-description-error popup__input-error popup__input-error_type_user-descr"></p>
-          <button type="submit" name="popup__submit-button" class="popup__submit-button 
+          <button type="submit" name="popup__submit-button" class="popup__submit-button
           responsible-fade responsible-fade_opacity_strong">
           Сохранить
           </button>
@@ -78,10 +78,10 @@
           <input type="text" minlength="2" maxlength="30" required name="new-card-title"
           class="popup__field popup__field_type_new-card-title" placeholder="Название" >
           <p class="new-card-title-error popup__input-error popup__input-error_type_card-title"></p>
-          <input type="url" required class="popup__field popup__field_type_new-card-link" 
+          <input type="url" required class="popup__field popup__field_type_new-card-link"
           placeholder="Ссылка на картинку" name="new-card-link">
           <p class="new-card-link-error popup__input-error popup__input-error_type_card-link"></p>
-          <button type="submit" name="popup__submit-button" class="popup__submit-button 
+          <button type="submit" name="popup__submit-button" class="popup__submit-button
           responsible-fade responsible-fade_opacity_strong">
           Создать
           </button>
@@ -101,9 +101,8 @@
       </div>
     </div>
   </div>
-  <script src="./scripts/initialCards.js"></script>
-  <script src="./scripts/validate.js"></script>
-  <script src="./scripts/index.js"></script>
+  <script type="module" src="./scripts/validate.js"></script>
+  <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
 

@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
     {
       name: 'Онежское озеро',
       link: 'https://images.unsplash.com/photo-1543699936-c901ddbf0c05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80',
@@ -30,4 +30,3 @@ const initialCards = [
       alt: 'Разноцветные двухэтажные дома, стоящие друг к другу вплотную.'
     }
   ]; 
-  
