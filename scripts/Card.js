@@ -1,23 +1,11 @@
-// const config = {
-//   cardTemplateSelector: '#place-card-template',
-//   cardTitleSelector: '.place-card__title',
-//   cardPictureSelector: 'place-card__photo',
-//   cardSelector: '.place-card',
-//   likeButtonSelector: 'place-card__like-button',
-//   removeButtonSelector: 'place-card__remove-button',
-//   photoPopupSelector: '.popup_type_picture-full-screen',
-//   popupSelector: 'popup'
-// }
-
-
-
 export class Card {
-  constructor(card, config){
+  constructor(card, config, openPopup){
     this._image = card.link
     this._title = card.name
     this._alt = card.alt ? card.alt : 'Описание не указано'
     this._config = config
     this._popup = document.querySelector(this._config.photoPopupSelector)
+    this._openPopup = openPopup 
   }
   
   _getTemplate(){
@@ -29,28 +17,11 @@ export class Card {
     return cardElement
   }
 
-  _openPopup () {
-    this._popup.classList.add(`${this._config.popupSelector}_active`)
-    document.addEventListener('keydown', this._closeByEsc)
-  }
-
-  _closePopup () {
-    this._popup.classList.remove(`${this._config.popupSelector}_active`)
-    document.removeEventListener('keydown',  this._closeByEsc)
-  }
-
-  _closeByEsc(evt){
-    if (evt.key === 'Escape') {
-      console.log(this);
-      this._popup.classList.contains(`${this._config.popupSelector}_active`) ? this._closePopup() : this
-    }
-     }
-
   _setEventListeners(){
     this._element.addEventListener('click', (evt) => {
         const tgt = evt.target
         if (tgt.classList.contains(this._config.cardPictureSelector)){
-          this._openPopup()
+          this._openPopup(this._popup, this._config)
           this._popupImage = this._popup.querySelector('.popup__photo')
           this._popupTitle = this._popup.querySelector(this._config.popupTitleSelector)
           this._popupImage.src = tgt.src
