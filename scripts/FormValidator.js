@@ -1,13 +1,16 @@
 export class FormValidator {
-  constructor(config, formElement, disableButton, hideInputError, checkStartWithSpace){
+  constructor(config, formElement, checkStartWithSpace){
     this._config = config
     this._formElement = formElement
     this._buttonElement = formElement.querySelector(config.submitButtonSelector)
     this._inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector))
-    this._disableButton = disableButton
-    this._hideInputError = hideInputError
     this._checkStartWithSpace = checkStartWithSpace
   }
+
+_disableButton(){
+  this._buttonElement.disabled = true
+  this._buttonElement.classList.add(this._config.inactiveButtonClass)
+}
 
 _enableButton(){
   this._buttonElement.disabled = false
@@ -19,7 +22,7 @@ _hasInvalidInput(){
 }
 
 _toggleButtonState(){
-  this._hasInvalidInput(this._inputList) ? this._disableButton(this._buttonElement, this._config) : this._enableButton()
+  this._hasInvalidInput(this._inputList) ? this._disableButton() : this._enableButton()
 }
 
 _showInputError(inputElement, errorMessage) {
@@ -29,9 +32,16 @@ _showInputError(inputElement, errorMessage) {
     errorElement.classList.add(this._config.errorClass)
   }
 
+  _hideInputError(inputElement) {
+    const errorElement = this._formElement.querySelector(`.${inputElement.name}-error`)
+    inputElement.classList.remove(this._config.inputErrorClass)
+    errorElement.textContent = ''
+    errorElement.classList.remove(this._config.errorClass)
+  }
+
 _checkInputValidity(inputElement){
-    if (!inputElement.validity.valid) {this._showInputError(inputElement, inputElement.validationMessage)}
-    else {this._hideInputError(this._formElement, inputElement, this._config)}
+  if (!inputElement.validity.valid) {this._showInputError(inputElement, inputElement.validationMessage)}
+  else {this._hideInputError(inputElement)}
   }
 
 _setEventListeners(){
@@ -45,13 +55,17 @@ _setEventListeners(){
     )
   }
 
+resetValidation(){
+  this._disableButton()
+  this._inputList.forEach(inputElement => this._hideInputError(inputElement))
+}
+
 enableValidation(){
-      this._disableButton(this._buttonElement, this._config)
+      this._disableButton()
       this._formElement.addEventListener('submit', evt => {
         evt.preventDefault()
-        this._disableButton(this._buttonElement, this._config)
+        this._disableButton()
       })
       this._setEventListeners()
     }
-
 }

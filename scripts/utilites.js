@@ -30,15 +30,8 @@ function disableButton(buttonElement, config){
       buttonElement.classList.add(config.inactiveButtonClass)
     }
 
-function hideInputError (formElement, inputElement, config) {
-      const errorElement = formElement.querySelector(`.${inputElement.name}-error`)
-      inputElement.classList.remove(config.inputErrorClass)
-      errorElement.textContent = ''
-      errorElement.classList.remove(config.errorClass)
-    }
-
 function checkStartWithSpace (inputElement){
   inputElement.value.startsWith(' ') ? inputElement.value = inputElement.value.slice(1) : null
 }
 
-    export {closeByEsc, closePopup, openPopup, disableButton, hideInputError, checkStartWithSpace}
+    export {closeByEsc, closePopup, openPopup, disableButton, checkStartWithSpace}

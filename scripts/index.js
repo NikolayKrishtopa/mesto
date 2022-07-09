@@ -1,7 +1,7 @@
 import {Card} from './Card.js'
 import {initialCards} from './initialCards.js'
 import {config} from './config.js'
-import {openPopup, closePopup, disableButton, hideInputError, checkStartWithSpace} from './utilites.js'
+import {openPopup, closePopup, disableButton, checkStartWithSpace} from './utilites.js'
 import {FormValidator} from './FormValidator.js'
 
 const cardsSection = document.querySelector('.place-cards')
@@ -16,28 +16,37 @@ const addPlaceLinkField = addCardPopup.querySelector('.popup__field_type_new-car
 const profileName = document.querySelector('.profile__name')
 const profileDescr = document.querySelector('.profile__description')
 const formList = Array.from(document.querySelectorAll('.popup__form'))
+const addPlaceForm = addPlaceNameField.closest('.popup__form')
+const editProfileForm = editUserNameField.closest('.popup__form')
 
 //Подключение валидации к формам
+const pageFormValidators = {}
 
-formList.forEach(formElement => new FormValidator(config, formElement, disableButton, hideInputError, checkStartWithSpace).enableValidation())
+function enableValidation(){
+  formList.forEach(formElement => {
+    const validator = new FormValidator(config, formElement, checkStartWithSpace)
+    const validatorName = formElement.name
+    pageFormValidators[validatorName] = validator
+    validator.enableValidation()    
+  })
+}
+
+enableValidation()
+
+// Функция создания и подготовки новой карточки
+function createCard(cardItem, config, openPopup){
+  return new Card(cardItem, config, openPopup).generateCard()
+}
 
 // Добавление исходных карточек на страницу
-initialCards.forEach(cardItem => {
-  const card = new Card(cardItem, config, openPopup)
-  cardsSection.append(card.generateCard())
-})
-
+initialCards.forEach(cardItem => cardsSection.append(createCard(cardItem, config, openPopup)))
 
 // ***РЕАЛИЗАЦИЯ РЕДАКТИРОВАНИЯ ПРОФИЛЯ***
 
 // Логика работы кнопки редактирования профиля
 
 editProfileButton.addEventListener('click', ()=>{
-  //  обнуление полей ошибок на случай закрытия формы без сохранения с активным полем ошибки
-  // чтоб не было ошибки при повторном открытии
-  const popupInputsList = editProfilePopup.querySelectorAll('.popup__field')
-  popupInputsList.forEach(input => hideInputError(editProfilePopup, input, config))
-  // основной функционал открытия окна редактирование профиля
+  pageFormValidators[editProfileForm.name].resetValidation()
   openPopup(editProfilePopup, config)
   editUserNameField.value = profileName.textContent
   editUserDescrField.value = profileDescr.textContent
@@ -56,12 +65,8 @@ editProfileButton.addEventListener('click', ()=>{
 // ***ДОБАВЛЕНИЕ НОВЫХ КАРТОЧЕК***
 
 addCardButton.addEventListener('click', (evt) => {
-  //обнуление полей ошибок на случай закрытия формы без сохранения с активным полем ошибки
-  //чтоб не было ошибки при повторном открытии
-  const popupInputsList = addCardPopup.querySelectorAll('.popup__field')
-  popupInputsList.forEach(input => hideInputError(addCardPopup, input, config))
-  //основной функционал открытия окна редактирование профиля
-  addPlaceNameField.closest('.popup__form').reset()
+  pageFormValidators[addPlaceForm.name].resetValidation()
+  addPlaceForm.reset()
   openPopup(addCardPopup, config)
 }
 )
@@ -69,10 +74,8 @@ addCardButton.addEventListener('click', (evt) => {
 addCardPopup.addEventListener('submit', (evt)=>{
   const newCardItem = {name: addPlaceNameField.value,
                        link: addPlaceLinkField.value}
-  
-  const newCard = new Card(newCardItem, config, openPopup)
 
-  cardsSection.prepend(newCard.generateCard())
+  cardsSection.prepend(createCard(newCardItem, config, openPopup))
   closePopup(addCardPopup)
   evt.preventDefault()
 }
