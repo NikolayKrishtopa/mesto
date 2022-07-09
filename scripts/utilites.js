@@ -25,13 +25,12 @@ function openPopup (popup, config) {
       popup.addEventListener('mousedown', closeByOverlay)
     }
 
-function disableButton(buttonElement, config){
-      buttonElement.disabled = true
-      buttonElement.classList.add(config.inactiveButtonClass)
-    }
+function handleCardClick(){
+
+} 
 
 function checkStartWithSpace (inputElement){
   inputElement.value.startsWith(' ') ? inputElement.value = inputElement.value.slice(1) : null
 }
 
-    export {closeByEsc, closePopup, openPopup, disableButton, checkStartWithSpace}
+    export {closeByEsc, closePopup, openPopup, checkStartWithSpace, handleCardClick}

@@ -1,7 +1,7 @@
 import {Card} from './Card.js'
 import {initialCards} from './initialCards.js'
 import {config} from './config.js'
-import {openPopup, closePopup, disableButton, checkStartWithSpace} from './utilites.js'
+import {openPopup, closePopup, checkStartWithSpace} from './utilites.js'
 import {FormValidator} from './FormValidator.js'
 
 const cardsSection = document.querySelector('.place-cards')

@@ -23,10 +23,10 @@ export class Card {
     this._element.addEventListener('click', (evt) => {
         const tgt = evt.target
         if (tgt.classList.contains(this._config.cardPictureSelector)){
+          this._popupImage.src = this._image
+          this._popupImage.alt = this.alt
+          this._popupTitle.textContent = this._title
           this._openPopup(this._popup, this._config)
-          this._popupImage.src = tgt.src
-          this._popupImage.alt = tgt.alt
-          this._popupTitle.textContent = tgt.closest(this._config.cardSelector).querySelector(this._config.cardTitleSelector).textContent
         }
         else if (!tgt.closest('button')){return}
         else if (tgt.closest('button').classList.contains(this._config.likeButtonSelector)){
