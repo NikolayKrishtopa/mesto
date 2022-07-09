@@ -25,12 +25,8 @@ function openPopup (popup, config) {
       popup.addEventListener('mousedown', closeByOverlay)
     }
 
-function handleCardClick(){
-
-} 
-
 function checkStartWithSpace (inputElement){
   inputElement.value.startsWith(' ') ? inputElement.value = inputElement.value.slice(1) : null
 }
 
-    export {closeByEsc, closePopup, openPopup, checkStartWithSpace, handleCardClick}
+    export {closeByEsc, closePopup, openPopup, checkStartWithSpace}
