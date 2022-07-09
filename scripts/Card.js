@@ -6,6 +6,8 @@ export class Card {
     this._config = config
     this._popup = document.querySelector(this._config.photoPopupSelector)
     this._openPopup = openPopup 
+    this._popupImage = this._popup.querySelector('.popup__photo')
+    this._popupTitle = this._popup.querySelector(this._config.popupTitleSelector)
   }
   
   _getTemplate(){
@@ -22,8 +24,6 @@ export class Card {
         const tgt = evt.target
         if (tgt.classList.contains(this._config.cardPictureSelector)){
           this._openPopup(this._popup, this._config)
-          this._popupImage = this._popup.querySelector('.popup__photo')
-          this._popupTitle = this._popup.querySelector(this._config.popupTitleSelector)
           this._popupImage.src = tgt.src
           this._popupImage.alt = tgt.alt
           this._popupTitle.textContent = tgt.closest(this._config.cardSelector).querySelector(this._config.cardTitleSelector).textContent
