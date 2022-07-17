@@ -1,8 +1,9 @@
-export const config = {
+const config = {
     cardTemplateSelector: '#place-card-template',
     cardTitleSelector: '.place-card__title',
-    cardPictureSelector: 'place-card__photo',
+    cardPictureSelector: '.place-card__photo',
     cardSelector: '.place-card',
+    cardsSectionSelector: '.place-cards',
     likeButtonSelector: 'place-card__like-button',
     removeButtonSelector: 'place-card__remove-button',
     photoPopupSelector: '.popup_type_picture-full-screen',
@@ -15,3 +16,5 @@ export const config = {
     inputErrorClass: 'popup__field_state_error',
     errorClass: 'popup__input-error_active'
   }
+
+  export default config

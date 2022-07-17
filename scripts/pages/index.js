@@ -1,10 +1,12 @@
-import {Card} from './Card.js'
-import {initialCards} from './initialCards.js'
-import {config} from './config.js'
-import {openPopup, closePopup, checkStartWithSpace} from './utilites.js'
-import {FormValidator} from './FormValidator.js'
+import Card from '../components/Card.js'
+import initialCards from '../utils/initialCards.js'
+import config from '../utils/config.js'
+import {openPopup, closePopup, checkStartWithSpace} from '../utils/utilites.js'
+import FormValidator from '../components/FormValidator.js'
+import Section from '../components/Section.js'
+// import PopupWithForm from '../components/PopupWithForm.js'
+// import PopupWithImage from '../components/PopupWithImage.js'
 
-const cardsSection = document.querySelector('.place-cards')
 const editProfileButton = document.querySelector('.profile__edit-button')
 const addCardButton = document.querySelector('.navigation__add-place-button')
 const editProfilePopup = document.querySelector('.popup_type_edit-profile')
@@ -33,13 +35,19 @@ function enableValidation(){
 
 enableValidation()
 
-// Функция создания и подготовки новой карточки
-function createCard(cardItem, config, openPopup){
-  return new Card(cardItem, config, openPopup).generateCard()
-}
+// Создание секции с карточками
+const cardsSection = new Section({
+  items: initialCards,
+  renderer: item => {
+    const cardElement = new Card(item, cardsSection._config).generateCard()
+    cardsSection.addItem(cardElement)
+  }
+  },
+  config
+)
 
 // Добавление исходных карточек на страницу
-initialCards.forEach(cardItem => cardsSection.append(createCard(cardItem, config, openPopup)))
+cardsSection.renderItems()
 
 // ***РЕАЛИЗАЦИЯ РЕДАКТИРОВАНИЯ ПРОФИЛЯ***
 
@@ -75,7 +83,7 @@ addCardPopup.addEventListener('submit', (evt)=>{
   const newCardItem = {name: addPlaceNameField.value,
                        link: addPlaceLinkField.value}
 
-  cardsSection.prepend(createCard(newCardItem, config, openPopup))
+  cardsSection.render(newCardItem)
   closePopup(addCardPopup)
   evt.preventDefault()
 }
