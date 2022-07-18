@@ -1,15 +1,15 @@
 import Card from '../components/Card.js'
 import initialCards from '../utils/initialCards.js'
 import config from '../utils/config.js'
-import checkStartWithSpace from '../utils/utilites.js'
+import { checkStartWithSpace, handleCardClick } from '../utils/utilis.js'
 import FormValidator from '../components/FormValidator.js'
 import Section from '../components/Section.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 
-const addCardPopup = new PopupWithForm('.popup_type_add-card')
-const editProfilePopup = new PopupWithForm('.popup_type_edit-profile')
-const bigPhotoPopup = new PopupWithImage('.popup_type_picture-full-screen')
+const addCardPopup = new PopupWithForm(config.addCardPopupSelector)
+const editProfilePopup = new PopupWithForm(config.editProfilePopupSelector)
+export const bigPhotoPopup = new PopupWithImage(config.photoPopupSelector, config)
 
 const addPlaceNameField = document.querySelector('.popup__field_type_new-card-title')
 const addPlaceLinkField = document.querySelector('.popup__field_type_new-card-link')
@@ -44,11 +44,12 @@ enableValidation()
 const cardsSection = new Section({
   items: initialCards,
   renderer: item => {
-    const cardElement = new Card(item, cardsSection._config).generateCard()
+    const cardElement = new Card(item, cardsSection._config, cardsSection._handleCardClick).generateCard()
     cardsSection.addItem(cardElement)
   }
   },
-  config
+  config,
+  handleCardClick
 )
 
 // Добавление исходных карточек на страницу

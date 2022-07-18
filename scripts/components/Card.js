@@ -7,8 +7,20 @@ export default class Card {
     this._title = card.name
     this._alt = card.alt ? card.alt : 'Описание не указано'
     this._handleCardClick = handleCardClick
+    this.isLiked = false
   }
   
+  _handleLike = (tgt) => {
+    if (this.isLiked) {
+    this.isLiked = false
+    tgt.classList.remove(`${this._config.likeButtonSelector}_active`)
+    }
+    else {
+    this.isLiked = true
+    tgt.classList.add(`${this._config.likeButtonSelector}_active`)
+  }
+  }
+
   _getTemplate(){
     const cardElement = document
       .querySelector(this._config.cardTemplateSelector)
@@ -21,10 +33,10 @@ export default class Card {
   _setEventListeners(){
     this._element.addEventListener('click', (evt) => {
       const tgt = evt.target
-      if (tgt === this._image) {handleCardClick(this._title, this._imageLink)}
+      if (tgt === this._image) {this._handleCardClick(this._title, this._imageLink, this._alt)}
       else if (!tgt.closest('button')){return}
         else if (tgt.closest('button').classList.contains(this._config.likeButtonSelector)){
-          tgt.classList.toggle(`${this._config.likeButtonSelector}_active`)
+          this._handleLike(tgt)
         }
         else if (tgt.closest('button').classList.contains(this._config.removeButtonSelector)){
           tgt.closest(this._config.cardSelector).remove()
