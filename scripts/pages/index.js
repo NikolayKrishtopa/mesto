@@ -6,10 +6,12 @@ import FormValidator from '../components/FormValidator.js'
 import Section from '../components/Section.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import PopupWithImage from '../components/PopupWithImage.js'
+import UserInfo from '../components/UserInfo.js'
 
 const addCardPopup = new PopupWithForm(config.addCardPopupSelector)
 const editProfilePopup = new PopupWithForm(config.editProfilePopupSelector)
 export const bigPhotoPopup = new PopupWithImage(config.photoPopupSelector, config)
+const userInfo = new UserInfo(config.userNameSelector, config.userInfoSelector)
 
 const addPlaceNameField = document.querySelector('.popup__field_type_new-card-title')
 const addPlaceLinkField = document.querySelector('.popup__field_type_new-card-link')
@@ -43,10 +45,7 @@ enableValidation()
 // Создание секции с карточками
 const cardsSection = new Section({
   items: initialCards,
-  renderer: item => {
-    const cardElement = new Card(item, cardsSection._config, cardsSection._handleCardClick).generateCard()
-    cardsSection.addItem(cardElement)
-  }
+  renderer: item => cardsSection.addItem(new Card(item, cardsSection._config, cardsSection._handleCardClick).generateCard())
   },
   config,
   handleCardClick
@@ -62,21 +61,17 @@ cardsSection.renderItems()
 editProfileButton.addEventListener('click', ()=>{
   pageFormValidators[editProfileForm.name].resetValidation()
   editProfilePopup.open()
-  editUserNameField.value = profileName.textContent
-  editUserDescrField.value = profileDescr.textContent
+  editUserNameField.value = userInfo.getUserInfo().name
+  editUserDescrField.value = userInfo.getUserInfo().info
 }
 )
 
-// Сохранение новых данных пользователя при нажатии кнопки Сохранить
   editProfilePopup._popup.addEventListener('submit', (evt) => {
-  profileName.textContent = editUserNameField.value
-  profileDescr.textContent = editUserDescrField.value
+  userInfo.setUserInfo(editUserNameField.value, editUserDescrField.value)
   editProfilePopup.close()
   evt.preventDefault()
 }
 )
-
-// ***ДОБАВЛЕНИЕ НОВЫХ КАРТОЧЕК***
 
 addCardButton.addEventListener('click', (evt) => {
   pageFormValidators[addPlaceForm.name].resetValidation()

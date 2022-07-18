@@ -17,7 +17,9 @@ const config = {
     submitButtonSelector: '.popup__submit-button',
     inactiveButtonClass: 'popup__submit-button_inactive',
     inputErrorClass: 'popup__field_state_error',
-    errorClass: 'popup__input-error_active'
+    errorClass: 'popup__input-error_active',
+    userNameSelector: '.profile__name',
+    userInfoSelector: '.profile__description'
   }
 
   export default config
