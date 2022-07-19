@@ -13,15 +13,12 @@ export const editProfilePopup = new PopupWithForm(config.editProfilePopupSelecto
 export const bigPhotoPopup = new PopupWithImage(config.photoPopupSelector, config)
 export const userInfo = new UserInfo(config.userNameSelector, config.userInfoSelector)
 
-const addPlaceNameField = document.querySelector('.popup__field_type_new-card-title')
-const addPlaceLinkField = document.querySelector('.popup__field_type_new-card-link')
+
 const editProfileButton = document.querySelector('.profile__edit-button')
 const addCardButton = document.querySelector('.navigation__add-place-button')
 const editUserNameField = document.querySelector('.popup__field_type_user-name')
 const editUserDescrField = document.querySelector('.popup__field_type_user-description')
 const formList = Array.from(document.querySelectorAll('.popup__form'))
-const addPlaceForm = addPlaceNameField.closest('.popup__form')
-const editProfileForm = editUserNameField.closest('.popup__form')
 
 
 document.querySelector('.profile__avatar').addEventListener('click', ()=>{console.log(editProfilePopup._getInputValues());})
@@ -52,17 +49,18 @@ export const cardsSection = new Section({
 // Добавление исходных карточек на страницу
 cardsSection.renderItems()
 
-
+//Обработчик клика кнопки редактирования профиля
 editProfileButton.addEventListener('click', ()=>{
-  pageFormValidators[editProfileForm.name].resetValidation()
+  pageFormValidators[editProfilePopup.form.name].resetValidation()
   editProfilePopup.open()
   editUserNameField.value = userInfo.getUserInfo().name
   editUserDescrField.value = userInfo.getUserInfo().info
 }
 )
 
+//Обработчик клика кнопки добавления карточки
 addCardButton.addEventListener('click', (evt) => {
-  pageFormValidators[addPlaceForm.name].resetValidation()
+  pageFormValidators[addCardPopup.form.name].resetValidation()
   addCardPopup.open()
 }
 )
