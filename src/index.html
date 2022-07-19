@@ -5,43 +5,42 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Место</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="root">
   <div class="page">
     <header class="header">
-      <img src="./images/logo.svg" alt="место." class="header__logo">
+      <img src="<%=require('./images/logo.svg')%>" alt="место." class="header__logo">
     </header>
     <main class="content">
       <section class="navigation">
         <div class="profile">
-          <img src="./images/kusteau.png" alt="Жак-Ив Кусто." class="profile__avatar">
+          <img src="<%=require('./images/kusteau.png')%>" alt="Жак-Ив Кусто." class="profile__avatar">
           <div class="profile__info">
             <div class="profile__container">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
               <button type="button" aria-label="Редактировать профиль" name="edit-profile-button" class="profile__edit-button responsible-fade">
-                <img src="./images/pensil-icon.svg" alt="редактировать профиль." class="profile__edit-icon">
+                <img src="<%=require('./images/pensil-icon.svg')%>" alt="редактировать профиль." class="profile__edit-icon">
               </button>
             </div>
             <p class="profile__description">Исследователь океана</p>
           </div>
         </div>
         <button type="button" aria-label="Добавить ваше место" name="add-card-button" class="navigation__add-place-button responsible-fade">
-          <img src="./images/plus-icon.svg" alt="добавить ваше место." class="navigation__add-place-icon">
+          <img src="<%=require('./images/plus-icon.svg')%>" alt="добавить ваше место." class="navigation__add-place-icon">
         </button>
       </section>
       <section class="place-cards">
         <template id="place-card-template">
           <article class="place-card">
             <button class="place-card__remove-button responsible-fade" type="button" aria-label="Удалить карточку.">
-              <img src="./images/trash-bin-icon.svg" alt="Удалить карточку." class="place-card__remove-button-icon">
+              <img src="<%=require('./images/trash-bin-icon.svg')%>" alt="Удалить карточку." class="place-card__remove-button-icon">
             </button>
             <img src="#" alt="#" class="place-card__photo">
             <div class="place-card__annotation">
               <h2 class="place-card__title"></h2>
               <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade
               responsible-fade_opacity_medium">
-                <img src="./images/like-icon.svg" alt="нравится!" class="place-card__like-icon">
+                <img src="<%=require('./images/like-icon.svg')%>" alt="нравится!" class="place-card__like-icon">
               </button>
             </div>
           </article>
@@ -67,7 +66,7 @@
           </button>
         </form>
         <button type="button" aria-label="Отменить редактирование" class="popup__close-button  responsible-fade">
-          <img src="./images/Close-icon.svg" alt="Закрыть окно" class="popup__close-icon">
+          <img src="<%=require('./images/Close-icon.svg')%>" alt="Закрыть окно" class="popup__close-icon">
         </button>
       </div>
     </div>
@@ -87,21 +86,20 @@
           </button>
         </form>
         <button type="button" aria-label="Отменить" class="popup__close-button responsible-fade">
-          <img src="./images/Close-icon.svg" alt="Закрыть окно" class="popup__close-icon">
+          <img src="<%=require('./images/Close-icon.svg')%>" alt="Закрыть окно" class="popup__close-icon">
         </button>
       </div>
     </div>
     <div class="popup popup_type_picture-full-screen">
       <div class="popup__photo-container">
         <button type="button" aria-label="закрыть окно." class="popup__close-button  responsible-fade">
-          <img src="./images/Close-icon.svg" alt="Закрыть окно." class="popup__close-icon">
+          <img src="<%=require('./images/Close-icon.svg')%>" alt="Закрыть окно." class="popup__close-icon">
         </button>
         <img src="#" alt="#" class="popup__photo">
         <h3 class="popup__title popup__title_type_photo"></h3>
       </div>
     </div>
   </div>
-  <script type="module" src="./scripts/pages/index.js"></script>
 </body>
 </html>
 

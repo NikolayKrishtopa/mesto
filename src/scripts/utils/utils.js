@@ -1,4 +1,4 @@
-import { bigPhotoPopup, addCardPopup, editProfilePopup, userInfo, cardsSection } from "../pages/index.js"
+import { bigPhotoPopup, addCardPopup, editProfilePopup, userInfo, cardsSection } from "../../index.js"
 
 export function checkStartWithSpace (inputElement){
   inputElement.value.startsWith(' ') ? inputElement.value = inputElement.value.slice(1) : null
