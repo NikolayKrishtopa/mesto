@@ -19,14 +19,14 @@
           <div class="profile__info">
             <div class="profile__container">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button type="button" aria-label="Редактировать профиль" class="profile__edit-button responsible-fade">
+              <button type="button" aria-label="Редактировать профиль" name="edit-profile-button" class="profile__edit-button responsible-fade">
                 <img src="./images/pensil-icon.svg" alt="редактировать профиль." class="profile__edit-icon">
               </button>
             </div>
             <p class="profile__description">Исследователь океана</p>
           </div>
         </div>
-        <button type="button" aria-label="Добавить ваше место" class="navigation__add-place-button responsible-fade">
+        <button type="button" aria-label="Добавить ваше место" name="add-card-button" class="navigation__add-place-button responsible-fade">
           <img src="./images/plus-icon.svg" alt="добавить ваше место." class="navigation__add-place-icon">
         </button>
       </section>
@@ -61,7 +61,7 @@
           <input type="text" class="popup__field popup__field_type_user-description" name="user-description"
           required minlength="2" maxlength="200">
           <p class="user-description-error popup__input-error popup__input-error_type_user-descr"></p>
-          <button type="submit" name="popup__submit-button" class="popup__submit-button
+          <button type="submit" name="edit-profile-submit-button" class="popup__submit-button
           responsible-fade responsible-fade_opacity_strong">
           Сохранить
           </button>
@@ -81,7 +81,7 @@
           <input type="url" required class="popup__field popup__field_type_new-card-link"
           placeholder="Ссылка на картинку" name="new-card-link">
           <p class="new-card-link-error popup__input-error popup__input-error_type_card-link"></p>
-          <button type="submit" name="popup__submit-button" class="popup__submit-button
+          <button type="submit" name="add-card-submit-button" class="popup__submit-button
           responsible-fade responsible-fade_opacity_strong">
           Создать
           </button>
