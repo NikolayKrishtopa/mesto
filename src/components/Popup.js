@@ -32,7 +32,7 @@ setEventListeners () {
 }
 
 removeEventListeners(){
-    document.removeEventListener('keydown', this._handleCloseByClick)
-    this._popup.removeEventListener('mousedown', this._handleEscClose)
+    document.removeEventListener('keydown', this._handleEscClose)
+    this._popup.removeEventListener('mousedown', this._handleCloseByClick)
   }
 }
