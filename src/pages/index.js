@@ -15,7 +15,7 @@ export const editProfilePopup = new PopupWithForm(config.editProfilePopupSelecto
 export const bigPhotoPopup = new PopupWithImage(config.photoPopupSelector, config)
 export const userInfo = new UserInfo(config.userNameSelector, config.userInfoSelector, config.avatarSelector)
 
-const api = new Api(config)
+export const api = new Api(config)
 const editProfileButton = document.querySelector('.profile__edit-button')
 const addCardButton = document.querySelector('.navigation__add-place-button')
 const editUserNameField = document.querySelector('.popup__field_type_user-name')

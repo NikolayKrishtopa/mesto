@@ -14,5 +14,12 @@ export default class Api{
       .then(res => res.json())
   }
 
-
+  setUserInfo(userInfo){
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(userInfo)
+    })
+      .then(res => res.json())
+  }
 }

@@ -1,4 +1,4 @@
-import { bigPhotoPopup, addCardPopup, editProfilePopup, userInfo, cardsSection } from "../pages/index.js"
+import { bigPhotoPopup, addCardPopup, editProfilePopup, userInfo, cardsSection, api } from "../pages/index.js"
 
 export function checkStartWithSpace (inputElement){
   inputElement.value.startsWith(' ') ? inputElement.value = inputElement.value.slice(1) : null
@@ -18,7 +18,7 @@ export const submitNewCard = evt => {
 }
 
 export const submitUserInfo = evt => {
-    userInfo.setUserInfo(editProfilePopup.getInputValues()['user-name'], editProfilePopup.getInputValues()['user-description'])
+    userInfo.setUserInfo(api.setUserInfo(editProfilePopup.getInputValues()))
     editProfilePopup.close()
     evt.preventDefault()
   }
