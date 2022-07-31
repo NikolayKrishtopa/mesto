@@ -22,4 +22,13 @@ export default class Api{
     })
       .then(res => res.json())
   }
+
+  createNewCard(cardElement){
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(cardElement)
+    })
+      .then(res => res.json())
+  }
 }

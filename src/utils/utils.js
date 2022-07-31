@@ -9,10 +9,8 @@ export function handleCardClick(title, link, alt){
 }
 
 export const submitNewCard = evt => {
-  const newCardItem = {name: addCardPopup.getInputValues()['new-card-title'],
-                       link: addCardPopup.getInputValues()['new-card-link']}
-
-  cardsSection.render(newCardItem)
+  const newCardItem = addCardPopup.getInputValues()
+  api.createNewCard(newCardItem).then(cardElement => cardsSection.render(cardElement))
   addCardPopup.close()
   evt.preventDefault()
 }
