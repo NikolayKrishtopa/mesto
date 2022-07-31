@@ -38,10 +38,13 @@
             <img src="#" alt="#" class="place-card__photo">
             <div class="place-card__annotation">
               <h2 class="place-card__title"></h2>
-              <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade
-              responsible-fade_opacity_medium">
-                <img src="<%=require('./images/like-icon.svg')%>" alt="нравится!" class="place-card__like-icon">
-              </button>
+              <div class="place-card__like">
+                <button type="button" aria-label="Мне нравится" class="place-card__like-button responsible-fade
+                responsible-fade_opacity_medium">
+                  <img src="<%=require('./images/like-icon.svg')%>" alt="нравится!" class="place-card__like-icon">
+                </button>
+                <p class="place-card__like-counter" id="like-counter"></p>
+              </div>
             </div>
           </article>
         </template>

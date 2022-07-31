@@ -21,6 +21,7 @@ const config = {
     userNameSelector: '.profile__name',
     userInfoSelector: '.profile__description',
     avatarSelector: '.profile__avatar',
+    likeCounterSelector: '.place-card__like-counter',
     apiData: {
       baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-47',
       headers: {

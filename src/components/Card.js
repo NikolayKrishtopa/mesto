@@ -8,6 +8,8 @@ export default class Card {
     this._alt = card.alt ? card.alt : 'Описание не указано'
     this._handleCardClick = handleCardClick
     this.isLiked = false
+    this._likeCounter = this._element.querySelector(this._config.likeCounterSelector)
+    this._likes = card.likes.length
   }
   
   _handleLike = (tgt) => {
@@ -19,6 +21,7 @@ export default class Card {
     this.isLiked = true
     tgt.classList.add(`${this._config.likeButtonSelector}_active`)
   }
+  console.log(this._likes)
   }
 
   _getTemplate(){
@@ -49,6 +52,7 @@ export default class Card {
     this._element.querySelector(this._config.cardTitleSelector).textContent = this._title
     this._element.querySelector(this._config.cardPictureSelector).src = this._imageLink
     this._element.querySelector(this._config.cardPictureSelector).alt = this._alt
+    this._likeCounter.textContent = this._likes
     this._setEventListeners()
     return this._element
   }
