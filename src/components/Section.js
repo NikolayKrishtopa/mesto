@@ -16,7 +16,6 @@ export default class Section{
     this._itemList.then(res => {
       res.reverse().forEach(item => {
       this.render(item)
-      console.log(item)
       })
     })
   }

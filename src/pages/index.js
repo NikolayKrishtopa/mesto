@@ -1,5 +1,4 @@
 import Card from '../components/Card.js'
-import initialCards from '../utils/initialCards.js'
 import config from '../utils/config.js'
 import { checkStartWithSpace, handleCardClick, submitNewCard, submitUserInfo, checkIfOwn } from '../utils/utils.js'
 import FormValidator from '../components/FormValidator'
