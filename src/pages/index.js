@@ -1,7 +1,7 @@
 import Card from '../components/Card.js'
 import initialCards from '../utils/initialCards.js'
 import config from '../utils/config.js'
-import { checkStartWithSpace, handleCardClick, submitNewCard, submitUserInfo } from '../utils/utils.js'
+import { checkStartWithSpace, handleCardClick, submitNewCard, submitUserInfo, checkIfOwn } from '../utils/utils.js'
 import FormValidator from '../components/FormValidator'
 import Section from '../components/Section.js'
 import PopupWithForm from '../components/PopupWithForm.js'
@@ -9,11 +9,15 @@ import PopupWithImage from '../components/PopupWithImage.js'
 import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js' 
 import './index.css'
+import Popup from '../components/Popup.js'
 
 export const addCardPopup = new PopupWithForm(config.addCardPopupSelector, submitNewCard, config)
 export const editProfilePopup = new PopupWithForm(config.editProfilePopupSelector, submitUserInfo, config)
 export const bigPhotoPopup = new PopupWithImage(config.photoPopupSelector, config)
 export const userInfo = new UserInfo(config.userNameSelector, config.userInfoSelector, config.avatarSelector)
+const confirmPopup = new Popup(config.confirmPopupSelector)
+
+// confirmPopup.open()
 
 export const api = new Api(config)
 const editProfileButton = document.querySelector('.profile__edit-button')
@@ -42,10 +46,11 @@ enableValidation()
 // Создание секции с карточками
 export const cardsSection = new Section({
   items: api.getInititalCards(),
-  renderer: item => cardsSection.addItem(new Card(item, cardsSection._config, cardsSection._handleCardClick).generateCard())
+  renderer: item => cardsSection.addItem(new Card(item, cardsSection._config, cardsSection._handleCardClick, cardsSection._checkIfOwn).generateCard())
   },
   config,
-  handleCardClick
+  handleCardClick,
+  checkIfOwn
 )
 
 // Добавление исходных карточек на страницу

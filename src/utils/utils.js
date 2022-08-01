@@ -20,3 +20,7 @@ export const submitUserInfo = evt => {
     editProfilePopup.close()
     evt.preventDefault()
   }
+
+  export function checkIfOwn(card){
+    return userInfo.getUserInfo().name === card.owner.name && userInfo.getUserInfo().about === card.owner.about
+  }
