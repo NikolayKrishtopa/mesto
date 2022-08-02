@@ -31,4 +31,13 @@ export default class Api{
     })
       .then(res => res.json())
   }
-}
+
+  removeCard(cardElement){
+    return fetch(`${this._baseUrl}/cards/${cardElement._id}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+      .then(res => res.json())
+  }
+
+  }

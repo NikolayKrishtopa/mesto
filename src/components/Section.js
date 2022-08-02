@@ -1,11 +1,12 @@
 export default class Section{
-  constructor({items, renderer}, config, handleCardClick, checkIfOwn){
+  constructor({items, renderer}, config, handleCardClick, checkIfOwn, openRemoveCardConfirm){
     this._itemList = items
     this.render = renderer
     this._config = config
     this._container = document.querySelector(config.cardsSectionSelector)
     this._handleCardClick = handleCardClick
     this._checkIfOwn = checkIfOwn
+    this._openRemoveCardConfirm = openRemoveCardConfirm
   }
 
   addItem(element) {

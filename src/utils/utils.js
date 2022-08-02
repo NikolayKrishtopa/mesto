@@ -1,4 +1,5 @@
-import { bigPhotoPopup, addCardPopup, editProfilePopup, userInfo, cardsSection, api } from "../pages/index.js"
+import PopupConfirm from "../components/PopupConfirm.js"
+import { bigPhotoPopup, addCardPopup, editProfilePopup, userInfo, cardsSection, api, confirmPopup} from "../pages/index.js"
 
 export function checkStartWithSpace (inputElement){
   inputElement.value.startsWith(' ') ? inputElement.value = inputElement.value.slice(1) : null
@@ -23,4 +24,13 @@ export const submitUserInfo = evt => {
 
   export function checkIfOwn(card){
     return userInfo.getUserInfo().name === card.owner.name && userInfo.getUserInfo().about === card.owner.about
+  }
+
+  export function openRemoveCardConfirm(cardElement){
+    confirmPopup.open(cardElement)
+  }
+
+  export function removeCardElement(cardElement){
+    api.removeCard(cardElement)
+      .then(cardsSection.renderItems())
   }

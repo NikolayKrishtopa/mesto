@@ -1,6 +1,6 @@
 import Card from '../components/Card.js'
 import config from '../utils/config.js'
-import { checkStartWithSpace, handleCardClick, submitNewCard, submitUserInfo, checkIfOwn } from '../utils/utils.js'
+import { checkStartWithSpace, handleCardClick, submitNewCard, submitUserInfo, checkIfOwn, openRemoveCardConfirm, removeCardElement } from '../utils/utils.js'
 import FormValidator from '../components/FormValidator'
 import Section from '../components/Section.js'
 import PopupWithForm from '../components/PopupWithForm.js'
@@ -8,16 +8,15 @@ import PopupWithImage from '../components/PopupWithImage.js'
 import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js' 
 import './index.css'
-import Popup from '../components/Popup.js'
 import PopupConfirm from '../components/PopupConfirm.js'
 
 export const addCardPopup = new PopupWithForm(config.addCardPopupSelector, submitNewCard, config)
 export const editProfilePopup = new PopupWithForm(config.editProfilePopupSelector, submitUserInfo, config)
 export const bigPhotoPopup = new PopupWithImage(config.photoPopupSelector, config)
 export const userInfo = new UserInfo(config.userNameSelector, config.userInfoSelector, config.avatarSelector)
-const confirmPopup = new PopupConfirm(config.confirmPopupSelector, config)
+export const confirmPopup = new PopupConfirm(config.confirmPopupSelector, config, removeCardElement)
 
-confirmPopup.open()
+// confirmPopup.open()
 
 export const api = new Api(config)
 const editProfileButton = document.querySelector('.profile__edit-button')
@@ -46,11 +45,12 @@ enableValidation()
 // Создание секции с карточками
 export const cardsSection = new Section({
   items: api.getInititalCards(),
-  renderer: item => cardsSection.addItem(new Card(item, cardsSection._config, cardsSection._handleCardClick, cardsSection._checkIfOwn).generateCard())
+  renderer: item => cardsSection.addItem(new Card(item, cardsSection._config, cardsSection._handleCardClick, cardsSection._checkIfOwn, cardsSection._openRemoveCardConfirm).generateCard())
   },
   config,
   handleCardClick,
-  checkIfOwn
+  checkIfOwn,
+  openRemoveCardConfirm
 )
 
 // Добавление исходных карточек на страницу

@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(card, config, handleCardClick, checkIfOwn){
+  constructor(card, config, handleCardClick, checkIfOwn, openRemoveCardConfirm){
     this._cardElement = card
     this.owner = card.owner
     this._config = config
@@ -16,6 +16,7 @@ export default class Card {
     this._removeButton = this._element.querySelector(this._config.removeButtonSelector)
     this._checkIfOwn = checkIfOwn
     this.isOwn = this._checkIfOwn(this._cardElement)
+    this._openRemoveCardConfirm = openRemoveCardConfirm
   }
   
   _handleLike = () => {
@@ -40,7 +41,7 @@ export default class Card {
   _setEventListeners(){
     this._image.addEventListener('click', () => this._handleCardClick(this._title, this._imageLink, this._alt))
     this._likeButton.addEventListener('click', () => this._handleLike())
-    this._removeButton.addEventListener('click', (evt) => evt.target.closest(this._config.cardSelector).remove())
+    this._removeButton.addEventListener('click', () => this._openRemoveCardConfirm(this._cardElement))
   }
 
   generateCard(){
