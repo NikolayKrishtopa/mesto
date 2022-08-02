@@ -32,5 +32,5 @@ export const submitUserInfo = evt => {
 
   export function removeCardElement(cardElement){
     api.removeCard(cardElement)
-      .then(cardsSection.renderItems())
+      .then(cardsSection.removeItem(cardElement))
   }

@@ -14,7 +14,7 @@ export default class Section{
   }
 
   removeItem(element) {
-    element.remove()
+   document.getElementById(element._id).remove()
   }
 
   renderItems() {

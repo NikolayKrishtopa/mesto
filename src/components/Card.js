@@ -46,6 +46,7 @@ export default class Card {
 
   generateCard(){
     this._element.querySelector(this._config.cardTitleSelector).textContent = this._title
+    this._element.id = this._cardElement._id
     this._element.querySelector(this._config.cardPictureSelector).src = this._imageLink
     this._element.querySelector(this._config.cardPictureSelector).alt = this._alt
     this._likeCounter.textContent = this._likes
