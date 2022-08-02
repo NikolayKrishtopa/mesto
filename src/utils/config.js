@@ -15,6 +15,8 @@ const config = {
     popupPhotoSelector: '.popup__photo',
     formSelector: '.popup__form',
     inputSelector: '.popup__field',
+    confirmButtonSelector: '.popup__submit-button_type_confirm',
+    cancelButtonSelector: '.popup__submit-button_type_cancel',
     submitButtonSelector: '.popup__submit-button',
     inactiveButtonClass: 'popup__submit-button_inactive',
     inputErrorClass: 'popup__field_state_error',

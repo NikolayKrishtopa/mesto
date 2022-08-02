@@ -9,14 +9,15 @@ import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js' 
 import './index.css'
 import Popup from '../components/Popup.js'
+import PopupConfirm from '../components/PopupConfirm.js'
 
 export const addCardPopup = new PopupWithForm(config.addCardPopupSelector, submitNewCard, config)
 export const editProfilePopup = new PopupWithForm(config.editProfilePopupSelector, submitUserInfo, config)
 export const bigPhotoPopup = new PopupWithImage(config.photoPopupSelector, config)
 export const userInfo = new UserInfo(config.userNameSelector, config.userInfoSelector, config.avatarSelector)
-const confirmPopup = new Popup(config.confirmPopupSelector)
+const confirmPopup = new PopupConfirm(config.confirmPopupSelector, config)
 
-// confirmPopup.open()
+confirmPopup.open()
 
 export const api = new Api(config)
 const editProfileButton = document.querySelector('.profile__edit-button')
