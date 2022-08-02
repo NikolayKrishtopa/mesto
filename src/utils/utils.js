@@ -23,7 +23,7 @@ export const submitUserInfo = evt => {
   }
 
   export function checkIfOwn(card){
-    return userInfo.getUserInfo().name === card.owner.name && userInfo.getUserInfo().about === card.owner.about
+    return userInfo.getUserInfo().id === card.owner._id
   }
 
   export function openRemoveCardConfirm(cardElement){
