@@ -1,5 +1,5 @@
 export default class Section{
-  constructor({items, renderer}, config, handleCardClick, checkIfOwn, openRemoveCardConfirm){
+  constructor({items, renderer}, config, handleCardClick, checkIfOwn, openRemoveCardConfirm, handleLikeServer){
     this._itemList = items
     this.render = renderer
     this._config = config
@@ -7,6 +7,7 @@ export default class Section{
     this._handleCardClick = handleCardClick
     this._checkIfOwn = checkIfOwn
     this._openRemoveCardConfirm = openRemoveCardConfirm
+    this._handleLikeServer = handleLikeServer
   }
 
   addItem(element) {

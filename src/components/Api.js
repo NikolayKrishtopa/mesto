@@ -49,7 +49,7 @@ export default class Api{
       .then(res => res.json())
   }
 
-  handeLikeServer(isLiked){
+  handleLikeServer(cardElement, isLiked){
     const httpMethod = isLiked ? 'DELETE' : 'PUT'
     return fetch(`${this._baseUrl}/cards/${cardElement._id}/likes`, {
       method: httpMethod,

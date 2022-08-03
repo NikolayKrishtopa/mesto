@@ -1,7 +1,7 @@
 import Card from '../components/Card.js'
 import config from '../utils/config.js'
 import { checkStartWithSpace, handleCardClick, submitNewCard, submitUserInfo, checkIfOwn, 
-         openRemoveCardConfirm, removeCardElement, handleEditAvatarForm, submitAvatar } from '../utils/utils.js'
+         openRemoveCardConfirm, removeCardElement, handleEditAvatarForm, submitAvatar, handleLikeServer } from '../utils/utils.js'
 import FormValidator from '../components/FormValidator'
 import Section from '../components/Section.js'
 import PopupWithForm from '../components/PopupWithForm.js'
@@ -45,12 +45,13 @@ enableValidation()
 // Создание секции с карточками
 export const cardsSection = new Section({
   items: api.getInititalCards(),
-  renderer: item => cardsSection.addItem(new Card(item, cardsSection._config, cardsSection._handleCardClick, cardsSection._checkIfOwn, cardsSection._openRemoveCardConfirm).generateCard())
+  renderer: item => cardsSection.addItem(new Card(item, cardsSection._config, cardsSection._handleCardClick, cardsSection._checkIfOwn, cardsSection._openRemoveCardConfirm, cardsSection._handleLikeServer).generateCard())
   },
   config,
   handleCardClick,
   checkIfOwn,
-  openRemoveCardConfirm
+  openRemoveCardConfirm,
+  handleLikeServer
 )
 
 // Добавление исходных карточек на страницу

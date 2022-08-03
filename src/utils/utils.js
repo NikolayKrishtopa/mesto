@@ -11,8 +11,9 @@ export function handleCardClick(title, link, alt){
 
 export const submitNewCard = evt => {
   const newCardItem = addCardPopup.getInputValues()
-  api.createNewCard(newCardItem).then(cardElement => cardsSection.render(cardElement))
-  addCardPopup.close()
+  api.createNewCard(newCardItem)
+    .then(cardElement => cardsSection.render(cardElement))
+    .then(addCardPopup.close())
   evt.preventDefault()
 }
 
@@ -42,6 +43,8 @@ export const submitUserInfo = evt => {
   export function submitAvatar(){
     userInfo.setUserInfo(api.setAvatar(editAvatarPopup.getInputValues().avatar)).
       then(editAvatarPopup.close())
+  }
 
-      
+  export function handleLikeServer(cardElement, isLiked){
+    return api.handleLikeServer(cardElement, isLiked)
   }

@@ -1,5 +1,7 @@
+import { userInfo } from "../pages/index.js"
+
 export default class Card {
-  constructor(card, config, handleCardClick, checkIfOwn, openRemoveCardConfirm){
+  constructor(card, config, handleCardClick, checkIfOwn, openRemoveCardConfirm, handleLikeServer){
     this._cardElement = card
     this.owner = card.owner
     this._config = config
@@ -11,23 +13,38 @@ export default class Card {
     this._handleCardClick = handleCardClick
     this.isLiked = false
     this._likeCounter = this._element.querySelector(this._config.likeCounterSelector)
-    this._likes = card.likes.length
     this._likeButton = this._element.querySelector(`.${this._config.likeButtonSelector}`)
     this._removeButton = this._element.querySelector(this._config.removeButtonSelector)
     this._checkIfOwn = checkIfOwn
     this.isOwn = this._checkIfOwn(this._cardElement)
     this._openRemoveCardConfirm = openRemoveCardConfirm
+    this._handleLikeServer = handleLikeServer
   }
   
-  _handleLike = () => {
+  _renderLikes(){
     if (this.isLiked) {
-    this.isLiked = false
-    this._likeButton.classList.remove(`${this._config.likeButtonSelector}_active`)
+      this._likeButton.classList.add(`${this._config.likeButtonSelector}_active`)
+      this._likeCounter.textContent = this._cardElement.likes.length
+      }
+      else {
+      this._likeButton.classList.remove(`${this._config.likeButtonSelector}_active`)
+      this._likeCounter.textContent = this._cardElement.likes.length
     }
-    else {
-    this.isLiked = true
-    this._likeButton.classList.add(`${this._config.likeButtonSelector}_active`)
   }
+
+  _checkOwnLike(){
+    return this._cardElement.likes.filter(e => e._id === userInfo.getUserInfo().id).length !==0
+  }
+
+  _handleLike = () => {
+    this._handleLikeServer(this._cardElement, this.isLiked)
+      .then(res => {
+      this._cardElement = res
+      this.isLiked = this._checkOwnLike()
+      console.log(this.isLiked)
+      this._renderLikes()
+    })
+
   }
 
   _getTemplate(){
@@ -40,10 +57,7 @@ export default class Card {
 
   _setEventListeners(){
     this._image.addEventListener('click', () => this._handleCardClick(this._title, this._imageLink, this._alt))
-    this._likeButton.addEventListener('click', () => {
-      this._handleLike()
-      console.log(this._cardElement.likes)
-    })
+    this._likeButton.addEventListener('click', this._handleLike)
     this._removeButton.addEventListener('click', () => this._openRemoveCardConfirm(this._cardElement))
   }
 
@@ -52,7 +66,8 @@ export default class Card {
     this._element.id = this._cardElement._id
     this._element.querySelector(this._config.cardPictureSelector).src = this._imageLink
     this._element.querySelector(this._config.cardPictureSelector).alt = this._alt
-    this._likeCounter.textContent = this._likes
+    this._checkOwnLike()
+    this._renderLikes()
     this._setEventListeners()
     if (!this.isOwn) {this._removeButton.remove()} 
     return this._element
