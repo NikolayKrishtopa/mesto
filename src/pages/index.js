@@ -1,6 +1,7 @@
 import Card from '../components/Card.js'
 import config from '../utils/config.js'
-import { checkStartWithSpace, handleCardClick, submitNewCard, submitUserInfo, checkIfOwn, openRemoveCardConfirm, removeCardElement } from '../utils/utils.js'
+import { checkStartWithSpace, handleCardClick, submitNewCard, submitUserInfo, checkIfOwn, 
+         openRemoveCardConfirm, removeCardElement, handleEditAvatarForm, submitAvatar } from '../utils/utils.js'
 import FormValidator from '../components/FormValidator'
 import Section from '../components/Section.js'
 import PopupWithForm from '../components/PopupWithForm.js'
@@ -11,12 +12,11 @@ import './index.css'
 import PopupConfirm from '../components/PopupConfirm.js'
 
 export const addCardPopup = new PopupWithForm(config.addCardPopupSelector, submitNewCard, config)
+export const editAvatarPopup = new PopupWithForm(config.editAvatarPopupSelector, submitAvatar, config)
 export const editProfilePopup = new PopupWithForm(config.editProfilePopupSelector, submitUserInfo, config)
 export const bigPhotoPopup = new PopupWithImage(config.photoPopupSelector, config)
-export const userInfo = new UserInfo(config.userNameSelector, config.userInfoSelector, config.avatarSelector)
+export const userInfo = new UserInfo(config.userNameSelector, config.userInfoSelector, config.avatarSelector, config.editAvatarButtonSelector, handleEditAvatarForm)
 export const confirmPopup = new PopupConfirm(config.confirmPopupSelector, config, removeCardElement)
-
-// confirmPopup.open()
 
 export const api = new Api(config)
 const editProfileButton = document.querySelector('.profile__edit-button')

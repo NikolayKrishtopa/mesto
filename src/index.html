@@ -14,7 +14,9 @@
     <main class="content">
       <section class="navigation">
         <div class="profile">
-          <img src="" alt="" class="profile__avatar">
+          <button type="button" aria-label="Редактировать фото профиля" name="edit-avatar-button" class="profile__edit-avatar-button responsible-fade_opacity_strong">
+            <img src="" alt="" class="profile__avatar">
+          </button>
           <div class="profile__info">
             <div class="profile__container">
               <h1 class="profile__name"></h1>
@@ -114,6 +116,23 @@
       responsible-fade responsible-fade_opacity_strong">
       Нет
       </button>
+      <button type="button" aria-label="Отменить" class="popup__close-button responsible-fade">
+        <img src="<%=require('./images/Close-icon.svg')%>" alt="Закрыть окно" class="popup__close-icon">
+      </button>
+    </div>
+  </div>
+  <div class="popup popup_type_edit-avatar">
+    <div class="popup__container">
+      <h3 class="popup__title">Обновить аватар</h3>
+      <form class="popup__form" name="edit-avatar" novalidate>
+        <input type="url" required class="popup__field popup__field_type_edit-avatar"
+        placeholder="Ссылка на картинку" name="avatar">
+        <p class="avatar-error popup__input-error popup__input-error_type_edit-avatar"></p>
+        <button type="submit" name="edit-avatar-submit-button" class="popup__submit-button
+        responsible-fade responsible-fade_opacity_strong">
+        Сохранить
+        </button>
+      </form>
       <button type="button" aria-label="Отменить" class="popup__close-button responsible-fade">
         <img src="<%=require('./images/Close-icon.svg')%>" alt="Закрыть окно" class="popup__close-icon">
       </button>

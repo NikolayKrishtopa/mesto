@@ -40,4 +40,22 @@ export default class Api{
       .then(res => res.json())
   }
 
+  setAvatar(avatarLink){
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({avatar: avatarLink})
+    })
+      .then(res => res.json())
+  }
+
+  handeLikeServer(isLiked){
+    const httpMethod = isLiked ? 'DELETE' : 'PUT'
+    return fetch(`${this._baseUrl}/cards/${cardElement._id}/likes`, {
+      method: httpMethod,
+      headers: this._headers,
+    })
+      .then(res => res.json())
+  }
+
   }

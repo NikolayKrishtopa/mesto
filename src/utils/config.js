@@ -10,6 +10,7 @@ const config = {
     addCardPopupSelector: '.popup_type_add-card',
     confirmPopupSelector: '.popup_type_confirm',
     editProfilePopupSelector: '.popup_type_edit-profile',
+    editAvatarPopupSelector: '.popup_type_edit-avatar',
     popupSelector: 'popup',
     popupTitleSelector: '.popup__title',
     popupPhotoSelector: '.popup__photo',
@@ -25,6 +26,7 @@ const config = {
     userInfoSelector: '.profile__description',
     avatarSelector: '.profile__avatar',
     likeCounterSelector: '.place-card__like-counter',
+    editAvatarButtonSelector: '.profile__edit-avatar-button',
     apiData: {
       baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-47',
       headers: {

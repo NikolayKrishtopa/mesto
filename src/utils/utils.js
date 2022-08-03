@@ -1,5 +1,5 @@
-import PopupConfirm from "../components/PopupConfirm.js"
-import { bigPhotoPopup, addCardPopup, editProfilePopup, userInfo, cardsSection, api, confirmPopup} from "../pages/index.js"
+import Api from "../components/Api.js"
+import { bigPhotoPopup, addCardPopup, editProfilePopup, userInfo, cardsSection, api, confirmPopup, editAvatarPopup} from "../pages/index.js"
 
 export function checkStartWithSpace (inputElement){
   inputElement.value.startsWith(' ') ? inputElement.value = inputElement.value.slice(1) : null
@@ -33,4 +33,15 @@ export const submitUserInfo = evt => {
   export function removeCardElement(cardElement){
     api.removeCard(cardElement)
       .then(cardsSection.removeItem(cardElement))
+  }
+
+  export function handleEditAvatarForm(){
+    editAvatarPopup.open()
+  }
+
+  export function submitAvatar(){
+    userInfo.setUserInfo(api.setAvatar(editAvatarPopup.getInputValues().avatar)).
+      then(editAvatarPopup.close())
+
+      
   }

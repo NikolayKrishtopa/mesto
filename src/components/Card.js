@@ -42,7 +42,7 @@ export default class Card {
     this._image.addEventListener('click', () => this._handleCardClick(this._title, this._imageLink, this._alt))
     this._likeButton.addEventListener('click', () => {
       this._handleLike()
-      console.log(this._cardElement)
+      console.log(this._cardElement.likes)
     })
     this._removeButton.addEventListener('click', () => this._openRemoveCardConfirm(this._cardElement))
   }
