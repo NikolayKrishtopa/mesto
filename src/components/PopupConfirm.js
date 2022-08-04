@@ -22,19 +22,22 @@ export default class PopupConfirm extends Popup{
     }
   }
 
-  _submit = () => {
-    this._removeCardElement(this._cardElement)
-    this.close()
+  _submit = (evt) => {
+    if (evt.key==='Enter' || evt.pointerType)
+    {this._removeCardElement(this._cardElement)
+    this.close()}
   }
 
   setEventListeners(){
     super.setEventListeners()
     this._confirmButton.addEventListener('click', this._submit)
+    document.addEventListener('keydown', this._submit)
   }
 
   removeEventListeners(){
     super.removeEventListeners()
     this._confirmButton.removeEventListener('click', this._submit)
+    document.removeEventListener('keydown', this._submit)
   }
 
   }

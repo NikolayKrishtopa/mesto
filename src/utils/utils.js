@@ -14,6 +14,7 @@ export const submitNewCard = evt => {
   api.createNewCard(newCardItem)
     .then(cardElement => cardsSection.render(cardElement))
     .then(addCardPopup.close())
+    .catch(err => alert(err))
   evt.preventDefault()
 }
 
@@ -33,7 +34,8 @@ export const submitUserInfo = evt => {
 
   export function removeCardElement(cardElement){
     api.removeCard(cardElement)
-      .then(cardsSection.removeItem(cardElement))
+      .then(()=>cardsSection.removeItem(cardElement))
+      .catch(err => alert(err))
   }
 
   export function handleEditAvatarForm(){
@@ -43,6 +45,7 @@ export const submitUserInfo = evt => {
   export function submitAvatar(){
     userInfo.setUserInfo(api.setAvatar(editAvatarPopup.getInputValues().avatar)).
       then(editAvatarPopup.close())
+      .catch(err => alert(err))
   }
 
   export function handleLikeServer(cardElement, isLiked){

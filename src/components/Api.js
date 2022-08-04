@@ -6,12 +6,18 @@ export default class Api{
 
   getUserInfo(){
     return fetch(`${this._baseUrl}/users/me`, {headers: this._headers})
-      .then(res => res.json())
+    .then(res => {
+      if (res.ok){return res.json()}
+      else {return Promise.reject(`ошибка ${res.status} при загрузке данных профиля с сервера`)}
+    })
   }
 
   getInititalCards(){
     return fetch(`${this._baseUrl}/cards`, {headers: this._headers})
-      .then(res => res.json())
+    .then(res => {
+      if (res.ok){return res.json()}
+      else {return Promise.reject(`ошибка ${res.status} при загрузке постов с сервера`)}
+    })
   }
 
   setUserInfo(userInfo){
@@ -20,7 +26,10 @@ export default class Api{
       headers: this._headers,
       body: JSON.stringify(userInfo)
     })
-      .then(res => res.json())
+    .then(res => {
+      if (res.ok){return res.json()}
+      else {return Promise.reject(`ошибка ${res.status} при отправке данных пользователя на сервер`)}
+    })
   }
 
   createNewCard(cardElement){
@@ -29,15 +38,20 @@ export default class Api{
       headers: this._headers,
       body: JSON.stringify(cardElement)
     })
-      .then(res => res.json())
-  }
+    .then(res => {
+      if (res.ok){return res.json()}
+      else {return Promise.reject(`ошибка ${res.status} при создании нового поста`)}
+    })  }
 
   removeCard(cardElement){
     return fetch(`${this._baseUrl}/cards/${cardElement._id}`, {
       method: 'DELETE',
       headers: this._headers,
     })
-      .then(res => res.json())
+    .then(res => {
+      if (res.ok){return res.json()}
+      else {return Promise.reject(`ошибка ${res.status} при удалении поста`)}
+    })
   }
 
   setAvatar(avatarLink){
@@ -46,7 +60,10 @@ export default class Api{
       headers: this._headers,
       body: JSON.stringify({avatar: avatarLink})
     })
-      .then(res => res.json())
+    .then(res => {
+      if (res.ok){return res.json()}
+      else {return Promise.reject(`ошибка ${res.status} при отправке изображения пользователя на сервер`)}
+    })
   }
 
   handleLikeServer(cardElement, isLiked){
@@ -55,7 +72,9 @@ export default class Api{
       method: httpMethod,
       headers: this._headers,
     })
-      .then(res => res.json())
+    .then(res => {
+      if (res.ok){return res.json()}
+      else {return Promise.reject(`ошибка ${res.status} при загрузке данных с сервера`)}
+    })
   }
-
   }

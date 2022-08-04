@@ -28,7 +28,8 @@ export default class UserInfo{
       this._avatar.alt = `изображение профиля ${data.name}`
       this._id = data._id
       this._userData = data
-  }
-  )
+    }
+    )
+    .catch(err => alert(err))
 }
 }

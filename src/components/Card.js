@@ -48,6 +48,7 @@ export default class Card {
       this._toggleLike()
       this._renderLikes()
     })
+      .catch(err => alert(err))
 
   }
 
