@@ -11,7 +11,7 @@ export default class Card {
     this._title = card.name
     this._alt = card.alt ? card.alt : 'Описание не указано'
     this._handleCardClick = handleCardClick
-    this.isLiked = false
+    this.isLiked = this._checkOwnLike()
     this._likeCounter = this._element.querySelector(this._config.likeCounterSelector)
     this._likeButton = this._element.querySelector(`.${this._config.likeButtonSelector}`)
     this._removeButton = this._element.querySelector(this._config.removeButtonSelector)
@@ -36,12 +36,16 @@ export default class Card {
     return this._cardElement.likes.filter(e => e._id === userInfo.getUserInfo().id).length !==0
   }
 
+  _toggleLike(){
+    this.isLiked = !this.isLiked
+  }
+  
   _handleLike = () => {
     this._handleLikeServer(this._cardElement, this.isLiked)
       .then(res => {
       this._cardElement = res
-      this.isLiked = this._checkOwnLike()
-      console.log(this.isLiked)
+      // this.isLiked = this._checkOwnLike()  ***заменена более простой toggleLike для улучшения быстродействия***
+      this._toggleLike()
       this._renderLikes()
     })
 
@@ -66,7 +70,6 @@ export default class Card {
     this._element.id = this._cardElement._id
     this._element.querySelector(this._config.cardPictureSelector).src = this._imageLink
     this._element.querySelector(this._config.cardPictureSelector).alt = this._alt
-    this._checkOwnLike()
     this._renderLikes()
     this._setEventListeners()
     if (!this.isOwn) {this._removeButton.remove()} 
