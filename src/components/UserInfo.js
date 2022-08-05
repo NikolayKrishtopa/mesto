@@ -21,15 +21,11 @@ export default class UserInfo{
   }
 
   setUserInfo(userData){
-    return userData.then(data => {
-      this._name.textContent = data.name
-      this._about.textContent = data.about
-      this._avatar.src = data.avatar
-      this._avatar.alt = `изображение профиля ${data.name}`
-      this._id = data._id
-      this._userData = data
+      this._name.textContent = userData.name
+      this._about.textContent = userData.about
+      this._avatar.src = userData.avatar
+      this._avatar.alt = `изображение профиля ${userData.name}`
+      this._id = userData._id
+      this._userData = userData
     }
-    )
-    .catch(err => alert(err))
-}
 }

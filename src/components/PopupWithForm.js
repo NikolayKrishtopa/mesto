@@ -9,7 +9,6 @@ export default class PopupWithForm extends Popup{
     this._inputList= Array.from(this.form.querySelectorAll(this._config.inputSelector))
     this._submitButton = this._popup.querySelector(this._config.submitButtonSelector)
     this._submitButtonInitialText = this._submitButton.textContent
-    console.log(this._submitButtonInitialText)
     }
 
     renderLoading(isLoading){

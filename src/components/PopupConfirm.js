@@ -14,7 +14,6 @@ export default class PopupConfirm extends Popup{
   open(cardElement){
     this._cardElement = cardElement
     super.open()
-    // console.log(this._cardElement)
   }
 
   renderLoading(isLoading){
@@ -38,7 +37,8 @@ export default class PopupConfirm extends Popup{
   _submit = (evt) => {
     if (evt.key==='Enter' || evt.pointerType)
     {this._removeCardElement(this._cardElement)
-    this.close()}
+    this.close()
+  console.log(this)}
   }
 
   setEventListeners(){

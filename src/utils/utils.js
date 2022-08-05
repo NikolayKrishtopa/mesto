@@ -1,4 +1,3 @@
-import Api from "../components/Api.js"
 import { bigPhotoPopup, addCardPopup, editProfilePopup, userInfo, cardsSection, api, confirmPopup, editAvatarPopup} from "../pages/index.js"
 
 export function checkStartWithSpace (inputElement){
@@ -14,19 +13,20 @@ export const submitNewCard = evt => {
   const newCardItem = addCardPopup.getInputValues()
   api.createNewCard(newCardItem)
     .then(cardElement => cardsSection.render(cardElement))
-    .then(()=>
-    {
-      addCardPopup.close()
-      addCardPopup.renderLoading(false)
-    })
+    .then(()=>addCardPopup.close())
     .catch(err => alert(err))
+    .finally(() => addCardPopup.renderLoading(false))
   evt.preventDefault()
 }
 
-export const submitUserInfo = evt => {
-    userInfo.setUserInfo(api.setUserInfo(editProfilePopup.getInputValues()))
-    editProfilePopup.close()
-    evt.preventDefault()
+export function submitUserInfo(evt) {
+    editProfilePopup.renderLoading(true)
+    api.setUserInfo(editProfilePopup.getInputValues())
+    .then(res=>userInfo.setUserInfo(res))
+    .then(editProfilePopup.close())
+    .catch(err => alert(err))
+    .finally(() => editProfilePopup.renderLoading(false))
+     evt.preventDefault()
   }
 
   export function checkIfOwn(card){
@@ -42,9 +42,9 @@ export const submitUserInfo = evt => {
     api.removeCard(cardElement)
       .then(()=>{
         cardsSection.removeItem(cardElement)
-        confirmPopup.renderLoading(false)
       })
       .catch(err => alert(err))
+      .finally(()=>confirmPopup.renderLoading(false))
   }
 
   export function handleEditAvatarForm(){
@@ -53,12 +53,11 @@ export const submitUserInfo = evt => {
 
   export function submitAvatar(){
     editAvatarPopup.renderLoading(true)
-    userInfo.setUserInfo(api.setAvatar(editAvatarPopup.getInputValues().avatar)).
-      then(()=>{
-        editAvatarPopup.close()
-        editAvatarPopup.renderLoading(false)
-      })
+    api.setAvatar(editAvatarPopup.getInputValues().avatar)
+      .then(res => userInfo.setUserInfo(res))
+      .then(()=>editAvatarPopup.close())
       .catch(err => alert(err))
+      .finally(() => editAvatarPopup.renderLoading(false))
   }
 
   export function handleLikeServer(cardElement, isLiked){

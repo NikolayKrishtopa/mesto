@@ -1,6 +1,6 @@
 export default class Section{
   constructor({items, renderer}, config, handleCardClick, checkIfOwn, openRemoveCardConfirm, handleLikeServer){
-    this._itemList = items
+    this.itemList = items
     this.render = renderer
     this._config = config
     this._container = document.querySelector(config.cardsSectionSelector)
@@ -19,10 +19,9 @@ export default class Section{
   }
 
   renderItems() {
-    this._itemList.then(res => {
-      res.reverse().forEach(item => {
+    this.itemList.reverse().forEach(item => {
       this.render(item)
-      })
-    })
+      }
+    )
   }
 }

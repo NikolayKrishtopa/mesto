@@ -11,6 +11,7 @@ import Api from '../components/Api.js'
 import './index.css'
 import PopupConfirm from '../components/PopupConfirm.js'
 
+
 export const addCardPopup = new PopupWithForm(config.addCardPopupSelector, submitNewCard, config)
 export const editAvatarPopup = new PopupWithForm(config.editAvatarPopupSelector, submitAvatar, config)
 export const editProfilePopup = new PopupWithForm(config.editProfilePopupSelector, submitUserInfo, config)
@@ -25,8 +26,7 @@ const editUserNameField = document.querySelector('.popup__field_type_user-name')
 const editUserDescrField = document.querySelector('.popup__field_type_user-description')
 const formList = Array.from(document.querySelectorAll('.popup__form'))
 
-// Установка изначального имени пользователя
-userInfo.setUserInfo(api.getUserInfo())
+
 
 //Подключение валидации к формам
 const pageFormValidators = {}
@@ -44,7 +44,7 @@ enableValidation()
 
 // Создание секции с карточками
 export const cardsSection = new Section({
-  items: api.getInititalCards(),
+  items: [],
   renderer: item => cardsSection.addItem(new Card(item, cardsSection._config, cardsSection._handleCardClick, cardsSection._checkIfOwn, cardsSection._openRemoveCardConfirm, cardsSection._handleLikeServer).generateCard())
   },
   config,
@@ -54,8 +54,16 @@ export const cardsSection = new Section({
   handleLikeServer
 )
 
-// Добавление исходных карточек на страницу
-cardsSection.renderItems()
+
+//Добавление исходных карточек и данных пользователя на страницу 
+Promise.all([api.getUserInfo(),
+api.getInititalCards()])
+  .then(res => {
+  userInfo.setUserInfo(res[0])
+  cardsSection.itemList = res[1]
+  cardsSection.renderItems()
+  })
+  .catch(err => alert(err))
 
 //Обработчик клика кнопки редактирования профиля
 editProfileButton.addEventListener('click', ()=>{
