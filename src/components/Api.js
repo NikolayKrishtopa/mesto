@@ -4,11 +4,15 @@ export default class Api{
     this._headers = config.apiData.headers
   }
 
+  _handleError = (res, message) => {
+    return Promise.reject(`ошибка ${res.status} при ${message}`)
+  }
+
   getUserInfo(){
     return fetch(`${this._baseUrl}/users/me`, {headers: this._headers})
     .then(res => {
       if (res.ok){return res.json()}
-      else {return Promise.reject(`ошибка ${res.status} при загрузке данных профиля с сервера`)}
+      else {return this._handleError(res, 'загрузке данных профиля с сервера')}
     })
   }
 
@@ -16,7 +20,7 @@ export default class Api{
     return fetch(`${this._baseUrl}/cards`, {headers: this._headers})
     .then(res => {
       if (res.ok){return res.json()}
-      else {return Promise.reject(`ошибка ${res.status} при загрузке постов с сервера`)}
+      else {return this._handleError(res, 'загрузке постов с сервера')}
     })
   }
 
@@ -28,7 +32,7 @@ export default class Api{
     })
     .then(res => {
       if (res.ok){return res.json()}
-      else {return Promise.reject(`ошибка ${res.status} при отправке данных пользователя на сервер`)}
+      else {return this._handleError(res, 'отправке данных пользователя на сервер')}
     })
   }
 
@@ -40,7 +44,7 @@ export default class Api{
     })
     .then(res => {
       if (res.ok){return res.json()}
-      else {return Promise.reject(`ошибка ${res.status} при создании нового поста`)}
+      else {return this._handleError(res, 'создании нового поста')}
     })  }
 
   removeCard(cardElement){
@@ -50,7 +54,7 @@ export default class Api{
     })
     .then(res => {
       if (res.ok){return res.json()}
-      else {return Promise.reject(`ошибка ${res.status} при удалении поста`)}
+      else {return this._handleError(res, 'удалении поста')}
     })
   }
 
@@ -62,7 +66,7 @@ export default class Api{
     })
     .then(res => {
       if (res.ok){return res.json()}
-      else {return Promise.reject(`ошибка ${res.status} при отправке изображения пользователя на сервер`)}
+      else {return this._handleError(res, 'отправке изображения пользователя на сервер')}
     })
   }
 
@@ -74,7 +78,7 @@ export default class Api{
     })
     .then(res => {
       if (res.ok){return res.json()}
-      else {return Promise.reject(`ошибка ${res.status} при загрузке данных с сервера`)}
+      else {return this._handleError(res, 'загрузке данных с сервера')}
     })
   }
   }

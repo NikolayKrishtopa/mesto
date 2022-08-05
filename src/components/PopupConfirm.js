@@ -6,6 +6,8 @@ export default class PopupConfirm extends Popup{
     this._config = config
     this._confirmButton = this._popup.querySelector(this._config.confirmButtonSelector)
     this._cancelButton = this._popup.querySelector(this._config.cancelButtonSelector)
+    this._confirmButtonInitialText = this._confirmButton.textContent
+    this._cancelButtonInitialText = this._cancelButton.textContent
     this._removeCardElement = removeCardElement
   }
 
@@ -13,6 +15,17 @@ export default class PopupConfirm extends Popup{
     this._cardElement = cardElement
     super.open()
     // console.log(this._cardElement)
+  }
+
+  renderLoading(isLoading){
+    if (isLoading){
+      this._confirmButton.textContent = 'Сохранение...'
+      this._cancelButton.textContent = 'Сохранение...' 
+      } 
+    else {
+      this._confirmButton.textContent = this._confirmButtonInitialText
+      this._cancelButton.textContent = this._cancelButtonInitialText
+    }
   }
 
   _handleCloseByClick = evt => {

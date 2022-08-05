@@ -10,10 +10,15 @@ export function handleCardClick(title, link, alt){
 }
 
 export const submitNewCard = evt => {
+  addCardPopup.renderLoading(true)
   const newCardItem = addCardPopup.getInputValues()
   api.createNewCard(newCardItem)
     .then(cardElement => cardsSection.render(cardElement))
-    .then(addCardPopup.close())
+    .then(()=>
+    {
+      addCardPopup.close()
+      addCardPopup.renderLoading(false)
+    })
     .catch(err => alert(err))
   evt.preventDefault()
 }
@@ -33,8 +38,12 @@ export const submitUserInfo = evt => {
   }
 
   export function removeCardElement(cardElement){
+    confirmPopup.renderLoading(true)
     api.removeCard(cardElement)
-      .then(()=>cardsSection.removeItem(cardElement))
+      .then(()=>{
+        cardsSection.removeItem(cardElement)
+        confirmPopup.renderLoading(false)
+      })
       .catch(err => alert(err))
   }
 
@@ -43,8 +52,12 @@ export const submitUserInfo = evt => {
   }
 
   export function submitAvatar(){
+    editAvatarPopup.renderLoading(true)
     userInfo.setUserInfo(api.setAvatar(editAvatarPopup.getInputValues().avatar)).
-      then(editAvatarPopup.close())
+      then(()=>{
+        editAvatarPopup.close()
+        editAvatarPopup.renderLoading(false)
+      })
       .catch(err => alert(err))
   }
 
