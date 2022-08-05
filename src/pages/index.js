@@ -11,22 +11,19 @@ import Api from '../components/Api.js'
 import './index.css'
 import PopupConfirm from '../components/PopupConfirm.js'
 
-
 export const addCardPopup = new PopupWithForm(config.addCardPopupSelector, submitNewCard, config)
 export const editAvatarPopup = new PopupWithForm(config.editAvatarPopupSelector, submitAvatar, config)
 export const editProfilePopup = new PopupWithForm(config.editProfilePopupSelector, submitUserInfo, config)
 export const bigPhotoPopup = new PopupWithImage(config.photoPopupSelector, config)
 export const userInfo = new UserInfo(config.userNameSelector, config.userInfoSelector, config.avatarSelector, config.editAvatarButtonSelector, handleEditAvatarForm)
 export const confirmPopup = new PopupConfirm(config.confirmPopupSelector, config, removeCardElement)
-
 export const api = new Api(config)
+
 const editProfileButton = document.querySelector('.profile__edit-button')
 const addCardButton = document.querySelector('.navigation__add-place-button')
 const editUserNameField = document.querySelector('.popup__field_type_user-name')
 const editUserDescrField = document.querySelector('.popup__field_type_user-description')
 const formList = Array.from(document.querySelectorAll('.popup__form'))
-
-
 
 //Подключение валидации к формам
 const pageFormValidators = {}
@@ -39,7 +36,6 @@ function enableValidation(){
     validator.enableValidation()    
   })
 }
-
 enableValidation()
 
 // Создание секции с карточками

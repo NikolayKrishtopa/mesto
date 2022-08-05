@@ -60,6 +60,13 @@ export function submitUserInfo(evt) {
       .finally(() => editAvatarPopup.renderLoading(false))
   }
 
-  export function handleLikeServer(cardElement, isLiked){
+  export function handleLikeServer(cardElement, isLiked, card){
     return api.handleLikeServer(cardElement, isLiked)
+    .then(res => {
+      card._cardElement = res
+      // this.isLiked = this._checkOwnLike()  ***заменена более простой toggleLike для улучшения быстродействия***
+      card._toggleLike()
+      card._renderLikes()
+    })
+      .catch(err => alert(err))
   }

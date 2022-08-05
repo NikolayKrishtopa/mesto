@@ -41,14 +41,7 @@ export default class Card {
   }
   
   _handleLike = () => {
-    this._handleLikeServer(this._cardElement, this.isLiked)
-      .then(res => {
-      this._cardElement = res
-      // this.isLiked = this._checkOwnLike()  ***заменена более простой toggleLike для улучшения быстродействия***
-      this._toggleLike()
-      this._renderLikes()
-    })
-      .catch(err => alert(err))
+    this._handleLikeServer(this._cardElement, this.isLiked, this)
 
   }
 
