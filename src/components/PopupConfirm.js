@@ -11,8 +11,9 @@ export default class PopupConfirm extends Popup{
     this._removeCardElement = removeCardElement
   }
 
-  open(cardElement){
+  open(cardElement, domElement){
     this._cardElement = cardElement
+    this._domElement = domElement
     super.open()
   }
 
@@ -28,7 +29,7 @@ export default class PopupConfirm extends Popup{
   }
 
   _submit = (evt) => {
-    this._removeCardElement(this._cardElement)
+    this._removeCardElement(this._cardElement, this._domElement)
     this.close()
   }
 

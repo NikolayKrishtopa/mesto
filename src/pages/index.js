@@ -45,11 +45,9 @@ function enableValidation(){
 enableValidation()
 
 // Создание секции с карточками
-export const cardsSection = new Section({
-  items: [],
-  renderer: item => cardsSection.addItem(new Card(item, cardsSection._config, cardsSection._handleCardClick, cardsSection._checkIfOwn, 
-    cardsSection._openRemoveCardConfirm, cardsSection._handleLikeServer, cardsSection._userId).generateCard())
-  },
+export const cardsSection = new Section(
+  item => cardsSection.addItem(new Card(item, cardsSection._config, handleCardClick, checkIfOwn, 
+    openRemoveCardConfirm, handleLikeServer, cardsSection._userId).generateCard()),
   config,
   handleCardClick,
   checkIfOwn,

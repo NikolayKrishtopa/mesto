@@ -30,15 +30,15 @@ export function submitUserInfo(userInfo) {
     return userInfo.getUserInfo().id === card.owner._id
   }
 
-  export function openRemoveCardConfirm(cardElement){
-    confirmPopup.open(cardElement)
+  export function openRemoveCardConfirm(cardElement, domElement){
+    confirmPopup.open(cardElement, domElement)
   }
 
-  export function removeCardElement(cardElement){
+  export function removeCardElement(cardElement, domElement){
     confirmPopup.renderLoading(true)
     api.removeCard(cardElement)
       .then(()=>{
-        cardsSection.removeItem(cardElement)
+        domElement.remove()
       })
       .catch(err => alert(err))
       .finally(()=>confirmPopup.renderLoading(false))
