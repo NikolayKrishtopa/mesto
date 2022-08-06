@@ -1,7 +1,5 @@
-import { userInfo } from "../pages/index.js"
-
 export default class Card {
-  constructor(card, config, handleCardClick, checkIfOwn, openRemoveCardConfirm, handleLikeServer){
+  constructor(card, config, handleCardClick, checkIfOwn, openRemoveCardConfirm, handleLikeServer, userId){
     this._cardElement = card
     this.owner = card.owner
     this._config = config
@@ -11,6 +9,7 @@ export default class Card {
     this._title = card.name
     this._alt = card.alt ? card.alt : 'Описание не указано'
     this._handleCardClick = handleCardClick
+    this._userId = userId
     this.isLiked = this._checkOwnLike()
     this._likeCounter = this._element.querySelector(this._config.likeCounterSelector)
     this._likeButton = this._element.querySelector(`.${this._config.likeButtonSelector}`)
@@ -18,7 +17,7 @@ export default class Card {
     this._checkIfOwn = checkIfOwn
     this.isOwn = this._checkIfOwn(this._cardElement)
     this._openRemoveCardConfirm = openRemoveCardConfirm
-    this._handleLikeServer = handleLikeServer
+    this._handleLikeServer = handleLikeServer    
   }
   
   _renderLikes(){
@@ -33,7 +32,7 @@ export default class Card {
   }
 
   _checkOwnLike(){
-    return this._cardElement.likes.filter(e => e._id === userInfo.getUserInfo().id).length !==0
+    return this._cardElement.likes.filter(e => e._id === this._userId).length !==0
   }
 
   _toggleLike(){
@@ -42,7 +41,6 @@ export default class Card {
   
   _handleLike = () => {
     this._handleLikeServer(this._cardElement, this.isLiked, this)
-
   }
 
   _getTemplate(){

@@ -11,18 +11,18 @@ import Api from '../components/Api.js'
 import './index.css'
 import PopupConfirm from '../components/PopupConfirm.js'
 
-export const addCardPopup = new PopupWithForm(config.addCardPopupSelector, submitNewCard, config)
-export const editAvatarPopup = new PopupWithForm(config.editAvatarPopupSelector, submitAvatar, config)
-export const editProfilePopup = new PopupWithForm(config.editProfilePopupSelector, submitUserInfo, config)
+export const addingCardPopup = new PopupWithForm(config.addingCardPopupSelector, submitNewCard, config)
+export const editingAvatarPopup = new PopupWithForm(config.editAvatarPopupSelector, submitAvatar, config)
+export const editingProfilePopup = new PopupWithForm(config.editProfilePopupSelector, submitUserInfo, config)
 export const bigPhotoPopup = new PopupWithImage(config.photoPopupSelector, config)
 export const userInfo = new UserInfo(config.userNameSelector, config.userInfoSelector, config.avatarSelector, config.editAvatarButtonSelector, handleEditAvatarForm)
 export const confirmPopup = new PopupConfirm(config.confirmPopupSelector, config, removeCardElement)
 export const api = new Api(config)
 
-const editProfileButton = document.querySelector('.profile__edit-button')
-const addCardButton = document.querySelector('.navigation__add-place-button')
-const editUserNameField = document.querySelector('.popup__field_type_user-name')
-const editUserDescrField = document.querySelector('.popup__field_type_user-description')
+const editingProfileButton = document.querySelector('.profile__edit-button')
+const addingCardButton = document.querySelector('.navigation__add-place-button')
+const editingUserNameField = document.querySelector('.popup__field_type_user-name')
+const editingUserDescrField = document.querySelector('.popup__field_type_user-description')
 const formList = Array.from(document.querySelectorAll('.popup__form'))
 
 //Подключение валидации к формам
@@ -41,38 +41,38 @@ enableValidation()
 // Создание секции с карточками
 export const cardsSection = new Section({
   items: [],
-  renderer: item => cardsSection.addItem(new Card(item, cardsSection._config, cardsSection._handleCardClick, cardsSection._checkIfOwn, cardsSection._openRemoveCardConfirm, cardsSection._handleLikeServer).generateCard())
+  renderer: item => cardsSection.addItem(new Card(item, cardsSection._config, cardsSection._handleCardClick, cardsSection._checkIfOwn, 
+    cardsSection._openRemoveCardConfirm, cardsSection._handleLikeServer, cardsSection._userId).generateCard())
   },
   config,
   handleCardClick,
   checkIfOwn,
   openRemoveCardConfirm,
-  handleLikeServer
+  handleLikeServer,
 )
-
 
 //Добавление исходных карточек и данных пользователя на страницу 
 Promise.all([api.getUserInfo(),
 api.getInititalCards()])
   .then(res => {
   userInfo.setUserInfo(res[0])
-  cardsSection.itemList = res[1]
-  cardsSection.renderItems()
+  cardsSection.setUserId(userInfo.getUserInfo().id)
+  cardsSection.renderItems(res[1]) 
   })
   .catch(err => alert(err))
 
 //Обработчик клика кнопки редактирования профиля
-editProfileButton.addEventListener('click', ()=>{
-  pageFormValidators[editProfilePopup.form.name].resetValidation()
-  editProfilePopup.open()
-  editUserNameField.value = userInfo.getUserInfo().name
-  editUserDescrField.value = userInfo.getUserInfo().about
+editingProfileButton.addEventListener('click', ()=>{
+  pageFormValidators[editingProfilePopup.form.name].resetValidation()
+  editingProfilePopup.open()
+  editingUserNameField.value = userInfo.getUserInfo().name
+  editingUserDescrField.value = userInfo.getUserInfo().about
 }
 )
 
 //Обработчик клика кнопки добавления карточки
-addCardButton.addEventListener('click', (evt) => {
-  pageFormValidators[addCardPopup.form.name].resetValidation()
-  addCardPopup.open()
+addingCardButton.addEventListener('click', (evt) => {
+  pageFormValidators[addingCardPopup.form.name].resetValidation()
+  addingCardPopup.open()
 }
 )

@@ -7,7 +7,7 @@ const config = {
     likeButtonSelector: 'place-card__like-button',
     removeButtonSelector: '.place-card__remove-button',
     photoPopupSelector: '.popup_type_picture-full-screen',
-    addCardPopupSelector: '.popup_type_add-card',
+    addingCardPopupSelector: '.popup_type_add-card',
     confirmPopupSelector: '.popup_type_confirm',
     editProfilePopupSelector: '.popup_type_edit-profile',
     editAvatarPopupSelector: '.popup_type_edit-avatar',

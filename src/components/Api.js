@@ -4,24 +4,19 @@ export default class Api{
     this._headers = config.apiData.headers
   }
 
-  _handleError = (res, message) => {
-    return Promise.reject(`ошибка ${res.status} при ${message}`)
+  _getResponseData = (res, message) => {
+    if (res.ok){return res.json()}
+    else {return Promise.reject(`ошибка ${res.status} при ${message}`)}
   }
 
   getUserInfo(){
     return fetch(`${this._baseUrl}/users/me`, {headers: this._headers})
-    .then(res => {
-      if (res.ok){return res.json()}
-      else {return this._handleError(res, 'загрузке данных профиля с сервера')}
-    })
+    .then(res => this._getResponseData(res, 'загрузке данных профиля с сервера'))
   }
 
   getInititalCards(){
     return fetch(`${this._baseUrl}/cards`, {headers: this._headers})
-    .then(res => {
-      if (res.ok){return res.json()}
-      else {return this._handleError(res, 'загрузке постов с сервера')}
-    })
+    .then(res => this._getResponseData(res, 'загрузке постов с сервера'))
   }
 
   setUserInfo(userInfo){
@@ -30,10 +25,7 @@ export default class Api{
       headers: this._headers,
       body: JSON.stringify(userInfo)
     })
-    .then(res => {
-      if (res.ok){return res.json()}
-      else {return this._handleError(res, 'отправке данных пользователя на сервер')}
-    })
+    .then(res => this._getResponseData(res, 'отправке данных пользователя на сервер'))
   }
 
   createNewCard(cardElement){
@@ -42,20 +34,15 @@ export default class Api{
       headers: this._headers,
       body: JSON.stringify(cardElement)
     })
-    .then(res => {
-      if (res.ok){return res.json()}
-      else {return this._handleError(res, 'создании нового поста')}
-    })  }
+    .then(res => this._getResponseData(res, 'создании нового поста'))
+  }
 
   removeCard(cardElement){
     return fetch(`${this._baseUrl}/cards/${cardElement._id}`, {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then(res => {
-      if (res.ok){return res.json()}
-      else {return this._handleError(res, 'удалении поста')}
-    })
+    .then(res => this._getResponseData(res, 'удалении поста'))
   }
 
   setAvatar(avatarLink){
@@ -64,10 +51,7 @@ export default class Api{
       headers: this._headers,
       body: JSON.stringify({avatar: avatarLink})
     })
-    .then(res => {
-      if (res.ok){return res.json()}
-      else {return this._handleError(res, 'отправке изображения пользователя на сервер')}
-    })
+    .then(res => this._getResponseData(res, 'отправке изображения пользователя на сервер'))
   }
 
   handleLikeServer(cardElement, isLiked){
@@ -76,9 +60,6 @@ export default class Api{
       method: httpMethod,
       headers: this._headers,
     })
-    .then(res => {
-      if (res.ok){return res.json()}
-      else {return this._handleError(res, 'загрузке данных с сервера')}
-    })
+    .then(res => this._getResponseData(res, 'загрузке данных с сервера'))
   }
-  }
+}

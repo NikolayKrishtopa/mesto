@@ -8,6 +8,11 @@ export default class Section{
     this._checkIfOwn = checkIfOwn
     this._openRemoveCardConfirm = openRemoveCardConfirm
     this._handleLikeServer = handleLikeServer
+    this._userId = ''
+  }
+
+  setUserId(UserId){
+    this._userId = UserId
   }
 
   addItem(element) {
@@ -18,8 +23,8 @@ export default class Section{
    document.getElementById(element._id).remove()
   }
 
-  renderItems() {
-    this.itemList.reverse().forEach(item => {
+  renderItems(CardsArr) {
+    CardsArr.reverse().forEach(item => {
       this.render(item)
       }
     )

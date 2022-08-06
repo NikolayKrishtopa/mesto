@@ -1,4 +1,4 @@
-import { bigPhotoPopup, addCardPopup, editProfilePopup, userInfo, cardsSection, api, confirmPopup, editAvatarPopup} from "../pages/index.js"
+import { bigPhotoPopup, addingCardPopup, editingProfilePopup, userInfo, cardsSection, api, confirmPopup, editingAvatarPopup} from "../pages/index.js"
 
 export function checkStartWithSpace (inputElement){
   inputElement.value.startsWith(' ') ? inputElement.value = inputElement.value.slice(1) : null
@@ -9,23 +9,23 @@ export function handleCardClick(title, link, alt){
 }
 
 export const submitNewCard = evt => {
-  addCardPopup.renderLoading(true)
-  const newCardItem = addCardPopup.getInputValues()
+  addingCardPopup.renderLoading(true)
+  const newCardItem = addingCardPopup.getInputValues()
   api.createNewCard(newCardItem)
     .then(cardElement => cardsSection.render(cardElement))
-    .then(()=>addCardPopup.close())
+    .then(()=>addingCardPopup.close())
     .catch(err => alert(err))
-    .finally(() => addCardPopup.renderLoading(false))
+    .finally(() => addingCardPopup.renderLoading(false))
   evt.preventDefault()
 }
 
 export function submitUserInfo(evt) {
-    editProfilePopup.renderLoading(true)
-    api.setUserInfo(editProfilePopup.getInputValues())
+    editingProfilePopup.renderLoading(true)
+    api.setUserInfo(editingProfilePopup.getInputValues())
     .then(res=>userInfo.setUserInfo(res))
-    .then(editProfilePopup.close())
+    .then(editingProfilePopup.close())
     .catch(err => alert(err))
-    .finally(() => editProfilePopup.renderLoading(false))
+    .finally(() => editingProfilePopup.renderLoading(false))
      evt.preventDefault()
   }
 
@@ -48,25 +48,28 @@ export function submitUserInfo(evt) {
   }
 
   export function handleEditAvatarForm(){
-    editAvatarPopup.open()
+    editingAvatarPopup.open()
   }
 
   export function submitAvatar(){
-    editAvatarPopup.renderLoading(true)
-    api.setAvatar(editAvatarPopup.getInputValues().avatar)
+    editingAvatarPopup.renderLoading(true)
+    api.setAvatar(editingAvatarPopup.getInputValues().avatar)
       .then(res => userInfo.setUserInfo(res))
-      .then(()=>editAvatarPopup.close())
+      .then(()=>editingAvatarPopup.close())
       .catch(err => alert(err))
-      .finally(() => editAvatarPopup.renderLoading(false))
+      .finally(() => editingAvatarPopup.renderLoading(false))
   }
 
   export function handleLikeServer(cardElement, isLiked, card){
     return api.handleLikeServer(cardElement, isLiked)
     .then(res => {
+      // card._cardElement.likes = res.likes
       card._cardElement = res
       // this.isLiked = this._checkOwnLike()  ***заменена более простой toggleLike для улучшения быстродействия***
       card._toggleLike()
       card._renderLikes()
+      console.log(card.isLiked)
+      console.log(card._cardElement.likes)
     })
       .catch(err => alert(err))
   }
