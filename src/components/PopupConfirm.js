@@ -1,3 +1,4 @@
+import { cardsSection } from "../pages";
 import Popup from "./Popup";
 
 export default class PopupConfirm extends Popup{
@@ -11,9 +12,8 @@ export default class PopupConfirm extends Popup{
     this._removeCardElement = removeCardElement
   }
 
-  open(cardElement, domElement){
-    this._cardElement = cardElement
-    this._domElement = domElement
+  open(card){
+    this._card = card
     super.open()
   }
 
@@ -28,14 +28,12 @@ export default class PopupConfirm extends Popup{
     }
   }
 
-  _submit = (evt) => {
-    this._removeCardElement(this._cardElement, this._domElement)
-    this.close()
-  }
-
   setEventListeners(){
     super.setEventListeners()
-    this._confirmButton.addEventListener('click', this._submit)
+    this._confirmButton.addEventListener('click', () => {
+      this._removeCardElement(this._card)
+      this.close()
+    })
   }
 
   }

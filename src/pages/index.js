@@ -1,7 +1,7 @@
 import Card from '../components/Card.js'
 import config from '../utils/config.js'
-import { checkStartWithSpace, handleCardClick, submitNewCard, submitUserInfo, checkIfOwn, 
-         openRemoveCardConfirm, removeCardElement, handleEditAvatarForm, submitAvatar, handleLikeServer } from '../utils/utils.js'
+import { checkStartWithSpace, submitNewCard, submitUserInfo, removeCardElement, 
+         handleEditAvatarForm, submitAvatar, createNewCard } from '../utils/utils.js'
 import FormValidator from '../components/FormValidator'
 import Section from '../components/Section.js'
 import PopupWithForm from '../components/PopupWithForm.js'
@@ -15,7 +15,8 @@ export const addingCardPopup = new PopupWithForm(config.addingCardPopupSelector,
 export const editingAvatarPopup = new PopupWithForm(config.editAvatarPopupSelector, submitAvatar, config)
 export const editingProfilePopup = new PopupWithForm(config.editProfilePopupSelector, submitUserInfo, config)
 export const bigPhotoPopup = new PopupWithImage(config.photoPopupSelector, config)
-export const userInfo = new UserInfo(config.userNameSelector, config.userInfoSelector, config.avatarSelector, config.editAvatarButtonSelector, handleEditAvatarForm)
+export const userInfo = new UserInfo(config.userNameSelector, config.userInfoSelector, config.avatarSelector, 
+                                     config.editAvatarButtonSelector, handleEditAvatarForm)
 export const confirmPopup = new PopupConfirm(config.confirmPopupSelector, config, removeCardElement)
 export const api = new Api(config)
 
@@ -24,12 +25,17 @@ const addingCardButton = document.querySelector('.navigation__add-place-button')
 const editingUserNameField = document.querySelector('.popup__field_type_user-name')
 const editingUserDescrField = document.querySelector('.popup__field_type_user-description')
 const formList = Array.from(document.querySelectorAll('.popup__form'))
+const editingAvatarButton = document.querySelector(config.editAvatarButtonSelector)
 
 //Активация слушателей событий на попапах
 addingCardPopup.setEventListeners()
 editingProfilePopup.setEventListeners()
 editingAvatarPopup.setEventListeners()
 confirmPopup.setEventListeners()
+bigPhotoPopup.setEventListeners()
+
+//Установка слушателя события на кнопку редактирования аватара
+editingAvatarButton.addEventListener('click', ()=>userInfo.handleEditAvatarForm())
 
 //Подключение валидации к формам
 const pageFormValidators = {}
@@ -46,13 +52,8 @@ enableValidation()
 
 // Создание секции с карточками
 export const cardsSection = new Section(
-  item => cardsSection.addItem(new Card(item, cardsSection._config, handleCardClick, checkIfOwn, 
-    openRemoveCardConfirm, handleLikeServer, cardsSection._userId).generateCard()),
-  config,
-  handleCardClick,
-  checkIfOwn,
-  openRemoveCardConfirm,
-  handleLikeServer,
+  item => cardsSection.addItem(createNewCard(Card, item, cardsSection._config, cardsSection._userId)),
+  config
 )
 
 //Добавление исходных карточек и данных пользователя на страницу 
@@ -69,8 +70,9 @@ api.getInititalCards()])
 editingProfileButton.addEventListener('click', ()=>{
   pageFormValidators[editingProfilePopup.form.name].resetValidation()
   editingProfilePopup.open()
-  editingUserNameField.value = userInfo.getUserInfo().name
-  editingUserDescrField.value = userInfo.getUserInfo().about
+  const {name, about} = userInfo.getUserInfo()
+  editingUserNameField.value = name, 
+  editingUserDescrField.value = about
 }
 )
 

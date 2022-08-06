@@ -3,13 +3,7 @@ export default class UserInfo{
     this._name = document.querySelector(nameSelector)
     this._about = document.querySelector(infoSelector) 
     this._avatar = document.querySelector(avatarSelector)
-    this._editAvatarButton = document.querySelector(avatarButtonSelector)
-    this._handleEditAvatarForm = handleEditAvatarForm
-    this._setEventListeners()
-  }
-
-  _setEventListeners(){
-    this._editAvatarButton.addEventListener('click', this._handleEditAvatarForm)
+    this.handleEditAvatarForm = handleEditAvatarForm
   }
 
   getUserInfo(){

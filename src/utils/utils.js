@@ -8,6 +8,11 @@ export function handleCardClick(title, link, alt){
   bigPhotoPopup.open(title, link, alt)
 }
 
+export function createNewCard(Card, Carditem, config, userId){
+return new Card(Carditem, config, handleCardClick, checkIfOwn, 
+  openRemoveCardConfirm, handleLikeServer, userId).generateCard()
+}
+
 export function submitNewCard(newCardItem){
   addingCardPopup.renderLoading(true)
   api.createNewCard(newCardItem)
@@ -34,11 +39,11 @@ export function submitUserInfo(userInfo) {
     confirmPopup.open(cardElement, domElement)
   }
 
-  export function removeCardElement(cardElement, domElement){
+  export function removeCardElement(card){
     confirmPopup.renderLoading(true)
-    api.removeCard(cardElement)
+    api.removeCard(card.cardElement)
       .then(()=>{
-        domElement.remove()
+        card.removeCard()
       })
       .catch(err => alert(err))
       .finally(()=>confirmPopup.renderLoading(false))
@@ -60,13 +65,10 @@ export function submitUserInfo(userInfo) {
   export function handleLikeServer(cardElement, isLiked, card){
     return api.handleLikeServer(cardElement, isLiked)
     .then(res => {
-      // card._cardElement.likes = res.likes
-      card._cardElement = res
+      card.updateLikesArr(res.likes)
       // this.isLiked = this._checkOwnLike()  ***заменена более простой toggleLike для улучшения быстродействия***
-      card._toggleLike()
-      card._renderLikes()
-      console.log(card.isLiked)
-      console.log(card._cardElement.likes)
+      card.toggleLike()
+      card.renderLikes()
     })
       .catch(err => alert(err))
   }
