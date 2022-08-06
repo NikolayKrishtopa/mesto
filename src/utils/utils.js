@@ -22,9 +22,9 @@ export function submitNewCard(newCardItem){
     .finally(() => addingCardPopup.renderLoading(false))
 }
 
-export function submitUserInfo(userInfo) {
+export function submitUserInfo(userData) {
     editingProfilePopup.renderLoading(true)
-    api.setUserInfo(userInfo)
+    api.setUserInfo(userData)
     .then(res=>userInfo.setUserInfo(res))
     .then(editingProfilePopup.close())
     .catch(err => alert(err))

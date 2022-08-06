@@ -10,6 +10,7 @@ import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js' 
 import './index.css'
 import PopupConfirm from '../components/PopupConfirm.js'
+import Popup from '../components/Popup.js'
 
 export const addingCardPopup = new PopupWithForm(config.addingCardPopupSelector, submitNewCard, config)
 export const editingAvatarPopup = new PopupWithForm(config.editAvatarPopupSelector, submitAvatar, config)
@@ -27,6 +28,20 @@ const editingUserDescrField = document.querySelector('.popup__field_type_user-de
 const formList = Array.from(document.querySelectorAll('.popup__form'))
 const editingAvatarButton = document.querySelector(config.editAvatarButtonSelector)
 
+//логика плавной загрузки страницы
+const page = document.querySelector('.page')
+const loadingPopup = new Popup('.popup_type_page-loading')
+function renderPageLoading(isLoading){
+  if (isLoading){
+    page.classList.remove('page_shown')
+    loadingPopup.open()
+  } 
+  else {
+    page.classList.add('page_shown')
+    loadingPopup.close()
+  }
+}
+
 //Активация слушателей событий на попапах
 addingCardPopup.setEventListeners()
 editingProfilePopup.setEventListeners()
@@ -34,16 +49,13 @@ editingAvatarPopup.setEventListeners()
 confirmPopup.setEventListeners()
 bigPhotoPopup.setEventListeners()
 
-//Установка слушателя события на кнопку редактирования аватара
-editingAvatarButton.addEventListener('click', ()=>userInfo.handleEditAvatarForm())
-
 //Подключение валидации к формам
 const pageFormValidators = {}
 
 function enableValidation(){
   formList.forEach(formElement => {
     const validator = new FormValidator(config, formElement, checkStartWithSpace)
-    const validatorName = formElement.name
+    const validatorName = formElement.getAttribute('name')
     pageFormValidators[validatorName] = validator
     validator.enableValidation()    
   })
@@ -57,6 +69,7 @@ export const cardsSection = new Section(
 )
 
 //Добавление исходных карточек и данных пользователя на страницу 
+renderPageLoading(true)
 Promise.all([api.getUserInfo(),
 api.getInititalCards()])
   .then(res => {
@@ -64,21 +77,28 @@ api.getInititalCards()])
   cardsSection.setUserId(userInfo.getUserInfo().id)
   cardsSection.renderItems(res[1]) 
   })
+  .then(()=>renderPageLoading(false))
   .catch(err => alert(err))
+
+//Обработчик клика кнопки редактирования аватара
+editingAvatarButton.addEventListener('click', ()=>{
+  userInfo.handleEditAvatarForm()
+  pageFormValidators[editingAvatarPopup.form.getAttribute('name')].resetValidation()
+})
 
 //Обработчик клика кнопки редактирования профиля
 editingProfileButton.addEventListener('click', ()=>{
-  pageFormValidators[editingProfilePopup.form.name].resetValidation()
   editingProfilePopup.open()
   const {name, about} = userInfo.getUserInfo()
   editingUserNameField.value = name, 
   editingUserDescrField.value = about
+  pageFormValidators[editingProfilePopup.form.getAttribute('name')].resetValidation()
 }
 )
 
 //Обработчик клика кнопки добавления карточки
 addingCardButton.addEventListener('click', (evt) => {
-  pageFormValidators[addingCardPopup.form.name].resetValidation()
+  pageFormValidators[addingCardPopup.form.getAttribute('name')].resetValidation()
   addingCardPopup.open()
 }
 )

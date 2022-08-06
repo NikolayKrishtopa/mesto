@@ -47,3 +47,5 @@
 @import url(../blocks/popup/__title/_type/popup__title_type_photo.css);
 @import url(../blocks/popup/_active/popup_active.css);
 @import url(../blocks/popup/_type/popup_type_picture-full-screen.css);
+@import url(../blocks/popup/__spinner/popup__spinner.css);
+@import url(../blocks/page/_shown/page_shown.css);

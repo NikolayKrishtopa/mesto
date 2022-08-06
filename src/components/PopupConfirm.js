@@ -20,11 +20,9 @@ export default class PopupConfirm extends Popup{
   renderLoading(isLoading){
     if (isLoading){
       this._confirmButton.textContent = 'Сохранение...'
-      this._cancelButton.textContent = 'Сохранение...' 
       } 
     else {
       this._confirmButton.textContent = this._confirmButtonInitialText
-      this._cancelButton.textContent = this._cancelButtonInitialText
     }
   }
 
@@ -34,6 +32,6 @@ export default class PopupConfirm extends Popup{
       this._removeCardElement(this._card)
       this.close()
     })
+    this._cancelButton.addEventListener('click', ()=>this.close())
   }
-
   }

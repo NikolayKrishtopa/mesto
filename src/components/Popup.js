@@ -29,8 +29,4 @@ _handleCloseByClick = evt => {
 setEventListeners () {
   this._popup.addEventListener('mousedown', this._handleCloseByClick)
 }
-
-// removeEventListeners(){
-//   this._popup.removeEventListener('mousedown', this._handleCloseByClick)
-//   }
 }

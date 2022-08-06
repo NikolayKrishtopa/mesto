@@ -61,11 +61,6 @@ resetValidation(){
 }
 
 enableValidation(){
-      this._disableButton()
-      this._formElement.addEventListener('submit', evt => {
-        evt.preventDefault()
-        this._disableButton()
-      })
       this._setEventListeners()
     }
 }

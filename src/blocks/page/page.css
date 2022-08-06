@@ -6,6 +6,8 @@
   max-width: 1080px;
   font-family: 'Inter', 'Arial', sans-serif;
   position: relative;
+  opacity: 0;
+  transition: opacity 1s ease;
 }
 
 @media (max-width: 1080px){
