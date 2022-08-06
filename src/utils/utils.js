@@ -8,25 +8,22 @@ export function handleCardClick(title, link, alt){
   bigPhotoPopup.open(title, link, alt)
 }
 
-export const submitNewCard = evt => {
+export function submitNewCard(newCardItem){
   addingCardPopup.renderLoading(true)
-  const newCardItem = addingCardPopup.getInputValues()
   api.createNewCard(newCardItem)
     .then(cardElement => cardsSection.render(cardElement))
     .then(()=>addingCardPopup.close())
     .catch(err => alert(err))
     .finally(() => addingCardPopup.renderLoading(false))
-  evt.preventDefault()
 }
 
-export function submitUserInfo(evt) {
+export function submitUserInfo(userInfo) {
     editingProfilePopup.renderLoading(true)
-    api.setUserInfo(editingProfilePopup.getInputValues())
+    api.setUserInfo(userInfo)
     .then(res=>userInfo.setUserInfo(res))
     .then(editingProfilePopup.close())
     .catch(err => alert(err))
     .finally(() => editingProfilePopup.renderLoading(false))
-     evt.preventDefault()
   }
 
   export function checkIfOwn(card){
@@ -51,9 +48,9 @@ export function submitUserInfo(evt) {
     editingAvatarPopup.open()
   }
 
-  export function submitAvatar(){
+  export function submitAvatar(avatarObj){
     editingAvatarPopup.renderLoading(true)
-    api.setAvatar(editingAvatarPopup.getInputValues().avatar)
+    api.setAvatar(avatarObj.avatar)
       .then(res => userInfo.setUserInfo(res))
       .then(()=>editingAvatarPopup.close())
       .catch(err => alert(err))

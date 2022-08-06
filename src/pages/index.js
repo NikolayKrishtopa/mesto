@@ -25,6 +25,12 @@ const editingUserNameField = document.querySelector('.popup__field_type_user-nam
 const editingUserDescrField = document.querySelector('.popup__field_type_user-description')
 const formList = Array.from(document.querySelectorAll('.popup__form'))
 
+//Активация слушателей событий на попапах
+addingCardPopup.setEventListeners()
+editingProfilePopup.setEventListeners()
+editingAvatarPopup.setEventListeners()
+confirmPopup.setEventListeners()
+
 //Подключение валидации к формам
 const pageFormValidators = {}
 
