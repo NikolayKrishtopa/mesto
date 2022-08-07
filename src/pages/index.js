@@ -20,23 +20,23 @@ export const userInfo = new UserInfo(config.userNameSelector, config.userInfoSel
 export const confirmPopup = new PopupConfirm(config.confirmPopupSelector, config, removeCardElement)
 export const api = new Api(config)
 
-const editingProfileButton = document.querySelector('.profile__edit-button')
-const addingCardButton = document.querySelector('.navigation__add-place-button')
-const editingUserNameField = document.querySelector('.popup__field_type_user-name')
-const editingUserDescrField = document.querySelector('.popup__field_type_user-description')
-const formList = Array.from(document.querySelectorAll('.popup__form'))
+const editingProfileButton = document.querySelector(config.editProfileButtonSelector)
+const addingCardButton = document.querySelector(config.addCardButtonSelector)
+const editingUserNameField = document.querySelector(config.editUserNameInputSelector)
+const editingUserDescrField = document.querySelector(config.editUserDescrInputSelector)
+const formList = Array.from(document.querySelectorAll(config.formSelector))
 const editingAvatarButton = document.querySelector(config.editAvatarButtonSelector)
 
 //логика плавной загрузки страницы
-const page = document.querySelector('.page')
-const loadingPopup = new Popup('.popup_type_page-loading')
+const page = document.querySelector(config.pageSelector)
+const loadingPopup = new Popup(config.loadingPopupSelector)
 function renderPageLoading(isLoading){
   if (isLoading){
-    page.classList.remove('page_shown')
+    page.classList.remove(config.pageActiveSelector)
     loadingPopup.open()
   } 
   else {
-    page.classList.add('page_shown')
+    page.classList.add(config.pageActiveSelector)
     loadingPopup.close()
   }
 }

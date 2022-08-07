@@ -1,4 +1,11 @@
 const config = {
+    editProfileButtonSelector: '.profile__edit-button',
+    addCardButtonSelector: '.navigation__add-place-button',
+    editUserNameInputSelector: '.popup__field_type_user-name',
+    editUserDescrInputSelector: '.popup__field_type_user-description',
+    pageSelector: '.page',
+    loadingPopupSelector: '.popup_type_page-loading',
+    pageActiveSelector: 'page_shown',
     cardTemplateSelector: '#place-card-template',
     cardTitleSelector: '.place-card__title',
     cardPictureSelector: '.place-card__photo',
