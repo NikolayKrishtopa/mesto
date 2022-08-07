@@ -1,4 +1,6 @@
 import { bigPhotoPopup, addingCardPopup, editingProfilePopup, userInfo, cardsSection, api, confirmPopup, editingAvatarPopup} from "../pages/index.js"
+import Card from "../components/Card.js"
+import config from "./config.js"
 
 export function checkStartWithSpace (inputElement){
   inputElement.value.startsWith(' ') ? inputElement.value = inputElement.value.slice(1) : null
@@ -8,15 +10,15 @@ export function handleCardClick(title, link, alt){
   bigPhotoPopup.open(title, link, alt)
 }
 
-export function createNewCard(Card, Carditem, config, userId){
-return new Card(Carditem, config, handleCardClick, checkIfOwn, 
+export function createNewCard(carditem, config, userId){
+return new Card(carditem, config, handleCardClick, checkIfOwn, 
   openRemoveCardConfirm, handleLikeServer, userId).generateCard()
 }
 
 export function submitNewCard(newCardItem){
   addingCardPopup.renderLoading(true)
   api.createNewCard(newCardItem)
-    .then(cardElement => cardsSection.render(cardElement))
+    .then(cardElement => cardsSection.addItem(createNewCard(cardElement, config, userInfo.getUserInfo().id)))
     .then(()=>addingCardPopup.close())
     .catch(err => alert(err))
     .finally(() => addingCardPopup.renderLoading(false))

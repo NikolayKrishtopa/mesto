@@ -1,4 +1,3 @@
-import Card from '../components/Card.js'
 import config from '../utils/config.js'
 import { checkStartWithSpace, submitNewCard, submitUserInfo, removeCardElement, 
          handleEditAvatarForm, submitAvatar, createNewCard } from '../utils/utils.js'
@@ -64,7 +63,7 @@ enableValidation()
 
 // Создание секции с карточками
 export const cardsSection = new Section(
-  item => cardsSection.addItem(createNewCard(Card, item, cardsSection._config, cardsSection._userId)),
+  item => cardsSection.addItem(createNewCard(item, cardsSection._config, cardsSection._userId)),
   config
 )
 
