@@ -19,7 +19,6 @@ export default class UserInfo{
       this._about.textContent = userData.about
       this._avatar.src = userData.avatar
       this._avatar.alt = `изображение профиля ${userData.name}`
-      this._userData = userData
       this._id = userData._id
     }
 }

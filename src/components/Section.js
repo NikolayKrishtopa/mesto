@@ -5,16 +5,12 @@ export default class Section{
     this._container = document.querySelector(config.cardsSectionSelector)
   }
 
-  setUserId(UserId){
-    this._userId = UserId
-  }
-
   addItem(element) {
     this._container.prepend(element)
   }
  
-  renderItems(CardsArr) {
-    CardsArr.reverse().forEach(item => {
+  renderItems(cardsArr) {
+    cardsArr.reverse().forEach(item => {
       this.render(item)
       }
     )

@@ -63,7 +63,7 @@ enableValidation()
 
 // Создание секции с карточками
 export const cardsSection = new Section(
-  item => cardsSection.addItem(createNewCard(item, cardsSection._config, cardsSection._userId)),
+  item => cardsSection.addItem(createNewCard(item, config, userInfo.getUserInfo().id)),
   config
 )
 
@@ -73,11 +73,13 @@ Promise.all([api.getUserInfo(),
 api.getInititalCards()])
   .then(res => {
   userInfo.setUserInfo(res[0])
-  cardsSection.setUserId(userInfo.getUserInfo().id)
   cardsSection.renderItems(res[1]) 
   })
   .then(()=>renderPageLoading(false))
-  .catch(err => alert(err))
+  .catch(err => {
+    alert(err)
+    renderPageLoading(false)
+  })
 
 //Обработчик клика кнопки редактирования аватара
 editingAvatarButton.addEventListener('click', ()=>{
