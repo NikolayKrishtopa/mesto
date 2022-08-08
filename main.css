@@ -23,10 +23,10 @@
 .profile__avatar{border-radius:50%;box-sizing:border-box;height:128px;margin:0;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;padding:0;width:128px}
 .profile__container{align-items:flex-end;display:flex;margin:0 0 12px}
 .profile__edit-avatar-button{background:transparent;border:none;border-radius:50%;box-sizing:border-box;cursor:pointer;margin:0 25px 0 0;padding:0;position:relative}@media (max-width:800px){.profile__edit-avatar-button{margin:0 0 22px}}.profile__edit-avatar-button:hover:before{align-items:center;bottom:0;content:url(ae1a976ddb506239e9f0.svg);display:flex;justify-content:center;left:0;position:absolute;right:0;top:0}
-.profile__description{color:#fff;font-size:18px;font-weight:400;line-height:1.21;margin:0;max-width:295px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media (max-width:450px){.profile__description{font-size:14px;max-width:190px}}
+.profile__description{color:#fff;font-size:18px;font-weight:400;line-height:1.21;margin:0;max-width:350px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media (max-width:450px){.profile__description{font-size:14px;max-width:190px}}
 .profile__edit-button{background:transparent;border:1px solid #fff;height:24px;margin:0 0 8px;padding:0;width:24px}@media (max-width:800px){.profile__edit-button{height:18px;margin-bottom:6px;width:18px}}
 .profile__info{display:flex;flex-direction:column;justify-content:center;margin:0;padding:0}@media (max-width:800px){.profile__info{text-align:center}}
-.profile__name{color:#fff;font-size:42px;font-weight:500;line-height:1.143;margin:0 18px 0 0;max-width:295px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media (max-width:450px){.profile__name{font-size:27px;line-height:1.21;max-width:190px}}
+.profile__name{color:#fff;font-size:42px;font-weight:500;line-height:1.143;margin:0 18px 0 0;max-width:350px;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap}@media (max-width:450px){.profile__name{font-size:27px;line-height:1.21;max-width:190px}}
 .responsible-fade{cursor:pointer;transition:opacity .5s ease}.responsible-fade:hover{opacity:60%}
 .responsible-fade_opacity_medium:hover{opacity:50%}
 .responsible-fade_opacity_strong:hover{opacity:80%}
